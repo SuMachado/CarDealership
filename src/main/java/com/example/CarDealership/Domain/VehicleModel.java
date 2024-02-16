@@ -57,13 +57,13 @@ public class VehicleModel {
         vehicleModel.setBrand(brand1.buildFromDTO(vehicleModelDTO.getBrandDTO()));
         return vehicleModel;}
 
-    public VehicleModelDTO buildDTO(VehicleModel vehicleModel) {
+    public VehicleModelDTO buildDTO() {
         VehicleModelDTO vehicleModelDTO = new VehicleModelDTO();
-        vehicleModelDTO.setModelIdDTO(vehicleModel.getModelId());
-        vehicleModelDTO.setNameDTO(vehicleModel.getName());
+        vehicleModelDTO.setModelIdDTO(this.getModelId());
+        vehicleModelDTO.setNameDTO(this.getName());
         Brand brand1=new Brand();
 
-        vehicleModelDTO.setBrandDTO(brand1.buildDTO(vehicleModel.getBrand()));
+        vehicleModelDTO.setBrandDTO(brand1.buildDTO());
         return vehicleModelDTO;
     }
 }

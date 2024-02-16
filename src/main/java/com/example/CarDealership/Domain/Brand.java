@@ -44,10 +44,10 @@ public class Brand {
         brand.setName(brandDTO.getNameDTO());
         return brand;}
 
-    public BrandDTO buildDTO(Brand brand) {
+    public BrandDTO buildDTO() {
         BrandDTO brandDTO = new BrandDTO();
-        brandDTO.setBrandIdDTO(brand.getBrandId());
-        brandDTO.setNameDTO(brand.getName());
+        brandDTO.setBrandIdDTO(this.getBrandId());
+        brandDTO.setNameDTO(this.getName());
         return brandDTO;
     }
 

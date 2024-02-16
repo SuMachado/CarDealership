@@ -88,8 +88,8 @@ public class Seller {
         return new Seller(dto.getSellerIdDTO(), dto.getNameDTO(), dto.getAddressDTO(), dto.getTaxNumberDTO(), dto.getPhoneNumberDTO(), dto.getEmailDTO());
     }
 
-    public SellerDTO buildToDTO(Seller seller) {
-        return new SellerDTO(seller.getSellerId(), seller.getName(), seller.getAddress(), seller.getTaxNumber(), seller.getPhoneNumber(), seller.getEmail());
+    public SellerDTO buildDTO() {
+        return new SellerDTO(this.getSellerId(), this.getName(), this.getAddress(), this.getTaxNumber(), this.getPhoneNumber(), this.getEmail());
     }
 
 }

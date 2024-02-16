@@ -193,32 +193,32 @@ public class Vehicle {
         return vehicle;
     }
 
-    public VehicleDTO buildDTO(Vehicle vehicle){
+    public VehicleDTO buildDTO(){
         VehicleDTO dto = new VehicleDTO();
-        dto.setVehicleIDDTO(vehicle.getVehicleID());
+        dto.setVehicleIDDTO(this.getVehicleID());
 
         VehicleModelDTO vehicleModelDTO1 = new VehicleModelDTO();
         VehicleModel vehicleModel1 = new VehicleModel();
-        vehicleModelDTO1=vehicleModel1.buildDTO(vehicle.getVehicleModel());
+        vehicleModelDTO1=vehicleModel1.buildDTO();
         dto.setVehicleModelDTO(vehicleModelDTO1);
 
-        dto.setFuelTypeDTO(vehicle.getFuelType());
-        dto.setLicensePlateDTO(vehicle.getLicensePlate());
-        dto.setMileageDTO(vehicle.getMileage());
-        dto.setPurchasePriceDTO(vehicle.getPurchasePrice());
-        dto.setSellingPriceDTO(vehicle.getSellingPrice());
+        dto.setFuelTypeDTO(this.getFuelType());
+        dto.setLicensePlateDTO(this.getLicensePlate());
+        dto.setMileageDTO(this.getMileage());
+        dto.setPurchasePriceDTO(this.getPurchasePrice());
+        dto.setSellingPriceDTO(this.getSellingPrice());
 
         SellerDTO sellerDTO1 = new SellerDTO();
         Seller seller1 = new Seller();
-        sellerDTO1=seller1.buildToDTO(vehicle.getSeller());
+        sellerDTO1=seller1.buildDTO();
         dto.setSellerDTO(sellerDTO1);
 
-        dto.setVehicleTypeDTO(vehicle.getVehicleType());
-        dto.setBusinessStatusDTO(vehicle.getBusinessStatus());
-        dto.setColourDTO(vehicle.getColour());
-        dto.setDoorsDTO(vehicle.getDoors());
-        dto.setSeatsDTO(vehicle.getSeats());
-        dto.setTractionDTO(vehicle.getTraction());
+        dto.setVehicleTypeDTO(this.getVehicleType());
+        dto.setBusinessStatusDTO(this.getBusinessStatus());
+        dto.setColourDTO(this.getColour());
+        dto.setDoorsDTO(this.getDoors());
+        dto.setSeatsDTO(this.getSeats());
+        dto.setTractionDTO(this.getTraction());
         return dto;
     }
 }

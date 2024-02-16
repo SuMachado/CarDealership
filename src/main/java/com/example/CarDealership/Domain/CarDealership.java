@@ -93,22 +93,41 @@ public class CarDealership {
         this.vehicles = vehicles;
     }
 
-    public CarDealershipDTO buildDTO(CarDealership carDealership) {
+    public CarDealershipDTO buildDTO() {
         CarDealershipDTO dto = new CarDealershipDTO();
 
-        dto.setDealerIDDTO(carDealership.getDealerID());
-        dto.setNameDTO(carDealership.getName());
-        dto.setAddressDTO(carDealership.getAddress());
-        dto.setPhoneNumberDTO(carDealership.getPhoneNumber());
-        dto.setFinalBalanceDTO(carDealership.getFinalBalance());
+        dto.setDealerIDDTO(this.getDealerID());
+        dto.setNameDTO(this.getName());
+        dto.setAddressDTO(this.getAddress());
+        dto.setPhoneNumberDTO(this.getPhoneNumber());
+        dto.setFinalBalanceDTO(this.getFinalBalance());
 
-        List <Vehicle>vehiclesList = carDealership.getVehicles();
+        List <Vehicle>vehiclesList = this.getVehicles();
         List <VehicleDTO>vehiclesDTOList = new ArrayList<>();
         for (Vehicle vehicle : vehiclesList) {
-            vehiclesDTOList.add(vehicle.buildDTO(vehicle));
+            vehiclesDTOList.add(vehicle.buildDTO());
         }
         dto.setVehicleDTOS(vehiclesDTOList);
 
         return dto;
+    }
+
+    public CarDealership buildFromDTO(CarDealershipDTO dto) {
+        CarDealership carDealership = new CarDealership();
+        carDealership.setDealerID(dto.getDealerIDDTO());
+        carDealership.setName(dto.getNameDTO());
+        carDealership.setAddress(dto.getAddressDTO());
+        carDealership.setPhoneNumber(dto.getPhoneNumberDTO());
+        carDealership.setFinalBalance(dto.getFinalBalanceDTO());
+
+        Vehicle vehicle = new Vehicle();
+        List <VehicleDTO> vehiclesDTOList = dto.getVehicleDTOS();
+        List <Vehicle> vehiclesList = new ArrayList<>();
+        for (VehicleDTO vehicleDTO : vehiclesDTOList) {
+            vehiclesList.add(vehicle.buildFromDTO(vehicleDTO));
+        }
+        carDealership.setVehicles(vehiclesList);
+
+        return carDealership;
     }
 }
