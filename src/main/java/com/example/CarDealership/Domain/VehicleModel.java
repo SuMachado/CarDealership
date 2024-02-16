@@ -12,7 +12,7 @@ public class VehicleModel {
     private int modelId;
     private String name;
 
-    @OneToMany
+    @ManyToOne
      private Brand brand;
 
     public VehicleModel(int modelId, String name, Brand brand) {

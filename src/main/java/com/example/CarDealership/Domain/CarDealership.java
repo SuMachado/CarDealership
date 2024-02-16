@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 public class CarDealership {
 
@@ -21,8 +22,9 @@ public class CarDealership {
     private double finalBalance;
 
 
-    @ManyToOne
+    @OneToMany
     private List<Vehicle> vehicles;
+
 
     public CarDealership(int dealerID, String name, String address, String phoneNumber, double finalBalance, List<Vehicle> vehicles) {
         this.dealerID = dealerID;

@@ -15,21 +15,24 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicleID;
-    @OneToMany
+    @ManyToOne
     private VehicleModel vehicleModel;
-    @OneToMany
+    @Enumerated(EnumType.ORDINAL)
     private FuelType fuelType;
     private String licensePlate;
     private double mileage;
     private double purchasePrice;
     private double sellingPrice;
-    @OneToMany
+    @ManyToOne
     private Seller seller;
+    @Enumerated(EnumType.ORDINAL)
     private VehicleType vehicleType;
+    @Enumerated(EnumType.ORDINAL)
     private BusinessStatus businessStatus;
     private String colour;
     private int doors;
     private int seats;
+    @Enumerated(EnumType.ORDINAL)
     private Traction traction;
 
     public Vehicle(int vehicleID, VehicleModel vehicleModel, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
