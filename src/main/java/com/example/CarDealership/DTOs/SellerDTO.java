@@ -24,6 +24,9 @@ public class SellerDTO {
         this.emailDTO = emailDTO;
     }
 
+    public SellerDTO() {
+    }
+
     public int getSellerIdDTO() {
         return sellerIdDTO;
     }

@@ -5,38 +5,43 @@ public class VehicleModelDTO {
 
 
     private int modelIdDTO;
-    private String DTO;
+    private String nameDTO;
 
 
      private BrandDTO brandDTO;
 
-    public VehicleModelDTO(int modelIdDTO, String DTO, BrandDTO brandDTO) {
+    public VehicleModelDTO(int modelIdDTO, String nameDTO, BrandDTO brandDTO) {
         this.modelIdDTO = modelIdDTO;
-        this.DTO = DTO;
+        this.nameDTO = nameDTO;
         this.brandDTO = brandDTO;
+    }
+
+    public VehicleModelDTO() {
     }
 
     public int getModelIdDTO() {
         return modelIdDTO;
     }
 
-    public String getDTO() {
-        return DTO;
+    public String getNameDTO() {
+        return nameDTO;
     }
 
-    public BrandDTO getBrand() {
+    public BrandDTO getBrandDTO() {
         return brandDTO;
     }
 
-    public void setBrand(BrandDTO brandDTO) {
+    public void setBrandDTO(BrandDTO brandDTO) {
         this.brandDTO = brandDTO;
     }
 
-    public void setDTO(String DTO) {
-        this.DTO = DTO;
+    public void setNameDTO(String nameDTO) {
+        this.nameDTO = nameDTO;
     }
 
     public void setModelIdDTO(int modelIdDTO) {
         this.modelIdDTO = modelIdDTO;
     }
+
+
 }

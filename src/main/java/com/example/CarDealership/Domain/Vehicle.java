@@ -1,5 +1,8 @@
 package com.example.CarDealership.Domain;
 
+import com.example.CarDealership.DTOs.SellerDTO;
+import com.example.CarDealership.DTOs.VehicleDTO;
+import com.example.CarDealership.DTOs.VehicleModelDTO;
 import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
@@ -161,5 +164,61 @@ public class Vehicle {
 
     public void setTraction(Traction traction) {
         this.traction = traction;
+    }
+
+    public Vehicle buildFromDTO(VehicleDTO dto){
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleID(dto.getVehicleIDDTO());
+
+        VehicleModel vehicleModel1 = new VehicleModel();
+        vehicleModel1=vehicleModel1.buildFromDTO(dto.getVehicleModelDTO());
+        vehicle.setVehicleModel(vehicleModel1);
+
+        vehicle.setFuelType(dto.getFuelTypeDTO());
+        vehicle.setLicensePlate(dto.getLicensePlateDTO());
+        vehicle.setMileage(dto.getMileageDTO());
+        vehicle.setPurchasePrice(dto.getPurchasePriceDTO());
+        vehicle.setSellingPrice(dto.getSellingPriceDTO());
+
+        Seller seller1 = new Seller();
+        seller1 = seller1.buildFromDTO(dto.getSellerDTO());
+        vehicle.setSeller(seller1);
+
+        vehicle.setVehicleType(dto.getVehicleTypeDTO());
+        vehicle.setBusinessStatus(dto.getBusinessStatusDTO());
+        vehicle.setColour(dto.getColourDTO());
+        vehicle.setDoors(dto.getDoorsDTO());
+        vehicle.setSeats(dto.getSeatsDTO());
+        vehicle.setTraction(dto.getTractionDTO());
+        return vehicle;
+    }
+
+    public VehicleDTO buildDTO(Vehicle vehicle){
+        VehicleDTO dto = new VehicleDTO();
+        dto.setVehicleIDDTO(vehicle.getVehicleID());
+
+        VehicleModelDTO vehicleModelDTO1 = new VehicleModelDTO();
+        VehicleModel vehicleModel1 = new VehicleModel();
+        vehicleModelDTO1=vehicleModel1.buildDTO(vehicle.getVehicleModel());
+        dto.setVehicleModelDTO(vehicleModelDTO1);
+
+        dto.setFuelTypeDTO(vehicle.getFuelType());
+        dto.setLicensePlateDTO(vehicle.getLicensePlate());
+        dto.setMileageDTO(vehicle.getMileage());
+        dto.setPurchasePriceDTO(vehicle.getPurchasePrice());
+        dto.setSellingPriceDTO(vehicle.getSellingPrice());
+
+        SellerDTO sellerDTO1 = new SellerDTO();
+        Seller seller1 = new Seller();
+        sellerDTO1=seller1.buildToDTO(vehicle.getSeller());
+        dto.setSellerDTO(sellerDTO1);
+
+        dto.setVehicleTypeDTO(vehicle.getVehicleType());
+        dto.setBusinessStatusDTO(vehicle.getBusinessStatus());
+        dto.setColourDTO(vehicle.getColour());
+        dto.setDoorsDTO(vehicle.getDoors());
+        dto.setSeatsDTO(vehicle.getSeats());
+        dto.setTractionDTO(vehicle.getTraction());
+        return dto;
     }
 }

@@ -1,30 +1,29 @@
 package com.example.CarDealership.Services;
 
+import com.example.CarDealership.DTOs.*;
 import com.example.CarDealership.Domain.*;
 
 import java.util.List;
 
 public interface DealershipAPI {
-    public Brand createBrand(Brand brand);
+    public BrandDTO createBrand(BrandDTO brand);
+    public BrandDTO getBrandByID(int id);
+    public List<BrandDTO> brandsList();
 
-    public Brand getBrandByID(int id);
-    public List<Brand> brandsList();
-    public VehicleModel createVehicleModel(VehicleModel model);
+    public VehicleModelDTO createVehicleModel(VehicleModelDTO model);
 
-    public VehicleModel getVehicleModelByID(int id);
-    public List<VehicleModel> vehicleModelsList();
+    public VehicleModelDTO getVehicleModelByID(int id);
+    public List<VehicleModelDTO> vehicleModelsList();
 
-    public Vehicle createVehicle(Vehicle vehicle);
+    public VehicleDTO createVehicle(VehicleDTO vehicle);
+    public VehicleDTO getVehicleByID(int id);
+    public List<VehicleDTO>vehiclesList();
 
-    public Vehicle getVehicleByID(int id);
+    public CarDealershipDTO createDealership(CarDealershipDTO dealership);
+    public CarDealershipDTO getDealershipByID(int id);
+    public List<CarDealershipDTO>dealershipList();
 
-    public List<Vehicle>vehiclesList();
-
-    public CarDealership createDealership(CarDealership dealership);
-    public CarDealership getDealershipByID(int id);
-    public List<CarDealership>dealershipList();
-
-    public Seller createSeller(Seller seller);
-    public Seller getSellerByID(int id);
-    public List<Seller> sellersList();
+    public SellerDTO createSeller(SellerDTO seller);
+    public SellerDTO getSellerByID(int id);
+    public List<SellerDTO> sellersList();
 }

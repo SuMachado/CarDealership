@@ -1,5 +1,7 @@
 package com.example.CarDealership.Domain;
 
+import com.example.CarDealership.DTOs.BrandDTO;
+import com.example.CarDealership.DTOs.VehicleModelDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,9 @@ public class VehicleModel {
         this.modelId = modelId;
         this.name = name;
         this.brand=brand;
+    }
+
+    public VehicleModel() {
     }
 
     public int getModelId() {
@@ -41,5 +46,24 @@ public class VehicleModel {
 
     public void setModelId(int modelId) {
         this.modelId = modelId;
+    }
+
+    public VehicleModel buildFromDTO(VehicleModelDTO vehicleModelDTO) {
+        VehicleModel vehicleModel = new VehicleModel();
+        vehicleModel.setModelId(vehicleModelDTO.getModelIdDTO());
+        vehicleModel.setName(vehicleModelDTO.getNameDTO());
+        Brand brand1=new Brand();
+
+        vehicleModel.setBrand(brand1.buildFromDTO(vehicleModelDTO.getBrandDTO()));
+        return vehicleModel;}
+
+    public VehicleModelDTO buildDTO(VehicleModel vehicleModel) {
+        VehicleModelDTO vehicleModelDTO = new VehicleModelDTO();
+        vehicleModelDTO.setModelIdDTO(vehicleModel.getModelId());
+        vehicleModelDTO.setNameDTO(vehicleModel.getName());
+        Brand brand1=new Brand();
+
+        vehicleModelDTO.setBrandDTO(brand1.buildDTO(vehicleModel.getBrand()));
+        return vehicleModelDTO;
     }
 }

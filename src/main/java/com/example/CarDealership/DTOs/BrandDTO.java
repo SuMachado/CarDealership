@@ -12,6 +12,8 @@ public class BrandDTO {
         this.nameDTO = nameDTO;
     }
 
+    public BrandDTO() {
+    }
     public int getBrandIdDTO() {
         return brandIdDTO;
     }

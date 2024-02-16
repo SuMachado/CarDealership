@@ -50,7 +50,7 @@ public class VehicleDTO {
         return vehicleIDDTO;
     }
 
-    public VehicleModelDTO getVehicleModel() {
+    public VehicleModelDTO getVehicleModelDTO() {
         return vehicleModelDTO;
     }
 
@@ -74,7 +74,7 @@ public class VehicleDTO {
         return sellingPriceDTO;
     }
 
-    public SellerDTO getSeller() {
+    public SellerDTO getSellerDTO() {
         return sellerDTO;
     }
 
@@ -106,7 +106,7 @@ public class VehicleDTO {
         this.vehicleIDDTO = vehicleIDDTO;
     }
 
-    public void setVehicleModel(VehicleModelDTO vehicleModelDTO) {
+    public void setVehicleModelDTO(VehicleModelDTO vehicleModelDTO) {
         this.vehicleModelDTO = vehicleModelDTO;
     }
 
@@ -130,7 +130,7 @@ public class VehicleDTO {
         this.sellingPriceDTO = sellingPriceDTO;
     }
 
-    public void setSeller(SellerDTO sellerDTO) {
+    public void setSellerDTO(SellerDTO sellerDTO) {
         this.sellerDTO = sellerDTO;
     }
 

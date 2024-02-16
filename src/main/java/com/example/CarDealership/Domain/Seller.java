@@ -1,5 +1,6 @@
 package com.example.CarDealership.Domain;
 
+import com.example.CarDealership.DTOs.SellerDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +30,9 @@ public class Seller {
         this.taxNumber = taxNumber;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Seller() {
     }
 
     public int getSellerId() {
@@ -78,4 +82,14 @@ public class Seller {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Seller buildFromDTO( SellerDTO dto) {
+
+        return new Seller(dto.getSellerIdDTO(), dto.getNameDTO(), dto.getAddressDTO(), dto.getTaxNumberDTO(), dto.getPhoneNumberDTO(), dto.getEmailDTO());
+    }
+
+    public SellerDTO buildToDTO(Seller seller) {
+        return new SellerDTO(seller.getSellerId(), seller.getName(), seller.getAddress(), seller.getTaxNumber(), seller.getPhoneNumber(), seller.getEmail());
+    }
+
 }

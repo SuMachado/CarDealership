@@ -1,5 +1,6 @@
 package com.example.CarDealership.Domain;
 
+import com.example.CarDealership.DTOs.BrandDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,9 @@ public class Brand {
         this.name = name;
     }
 
+    public Brand() {
+    }
+
     public int getBrandId() {
         return brandId;
     }
@@ -33,4 +37,18 @@ public class Brand {
     public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
+
+    public Brand buildFromDTO(BrandDTO brandDTO) {
+        Brand brand = new Brand();
+        brand.setBrandId(brandDTO.getBrandIdDTO());
+        brand.setName(brandDTO.getNameDTO());
+        return brand;}
+
+    public BrandDTO buildDTO(Brand brand) {
+        BrandDTO brandDTO = new BrandDTO();
+        brandDTO.setBrandIdDTO(brand.getBrandId());
+        brandDTO.setNameDTO(brand.getName());
+        return brandDTO;
+    }
+
 }
