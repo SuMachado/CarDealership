@@ -1,10 +1,12 @@
 package com.example.CarDealership.DTOs;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CarDealershipDTO {
+public class CarDealershipDTO extends RepresentationModel<CarDealershipDTO> {
 
 
     private int dealerIDDTO;

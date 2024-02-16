@@ -57,7 +57,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public BrandDTO updateBrand(BrandDTO brandDTO, Brand brand) {
+    public BrandDTO updateBrand(BrandDTO brandDTO) {
         Brand b1=new Brand();
 //        if(brandDTO.getNameDTO()!=null && !brand.getName().equals(brandDTO.getNameDTO())){
 //            b1.setName(brandDTO.getNameDTO());
@@ -107,7 +107,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public VehicleModelDTO updateVehicleModel(VehicleModelDTO modelDTO, VehicleModel model) {
+    public VehicleModelDTO updateVehicleModel(VehicleModelDTO modelDTO) {
         VehicleModel v1= new VehicleModel();
         v1= v1.buildFromDTO(modelDTO);
         v1=vehicleModelRepo.save(v1);
@@ -154,7 +154,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public SellerDTO updateSeller(SellerDTO sellerDTO, Seller seller) {
+    public SellerDTO updateSeller(SellerDTO sellerDTO) {
         Seller s1= new Seller();
 
         s1= s1.buildFromDTO(sellerDTO);
@@ -202,7 +202,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public VehicleDTO updateVehicle(VehicleDTO vehicleDTO, Vehicle vehicle) {
+    public VehicleDTO updateVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1= new Vehicle();
 
         v1= v1.buildFromDTO(vehicleDTO);
@@ -254,7 +254,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public CarDealershipDTO updateDealership(CarDealershipDTO dealershipDTO, CarDealership dealership) {
+    public CarDealershipDTO updateDealership(CarDealershipDTO dealershipDTO) {
         CarDealership d1= new CarDealership();
         d1= d1.buildFromDTO(dealershipDTO);
         d1=dealershipRepo.save(d1);

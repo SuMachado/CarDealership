@@ -4,9 +4,10 @@ import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
 import com.example.CarDealership.Enums.VehicleType;
+import org.springframework.hateoas.RepresentationModel;
 
 
-public class VehicleDTO {
+public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
 
     private int vehicleIDDTO;
