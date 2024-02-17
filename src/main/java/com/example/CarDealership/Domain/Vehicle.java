@@ -2,7 +2,7 @@ package com.example.CarDealership.Domain;
 
 import com.example.CarDealership.DTOs.SellerDTO;
 import com.example.CarDealership.DTOs.VehicleDTO;
-import com.example.CarDealership.DTOs.VehicleModelDTO;
+import com.example.CarDealership.DTOs.ModelDTO;
 import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
@@ -16,7 +16,7 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicleID;
     @ManyToOne
-    private VehicleModel vehicleModel;
+    private Model model;
     @Enumerated(EnumType.ORDINAL)
     private FuelType fuelType;
     private String licensePlate;
@@ -35,11 +35,11 @@ public class Vehicle {
     @Enumerated(EnumType.ORDINAL)
     private Traction traction;
 
-    public Vehicle(int vehicleID, VehicleModel vehicleModel, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
+    public Vehicle(int vehicleID, Model model, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
                    double sellingPrice, Seller seller, VehicleType vehicleType, BusinessStatus businessStatus, String colour, int doors,
                    int seats, Traction traction) {
         this.vehicleID = vehicleID;
-        this.vehicleModel = vehicleModel;
+        this.model = model;
         this.fuelType = fuelType;
         this.licensePlate = licensePlate;
         this.mileage = mileage;
@@ -61,8 +61,8 @@ public class Vehicle {
         return vehicleID;
     }
 
-    public VehicleModel getVehicleModel() {
-        return vehicleModel;
+    public Model getVehicleModel() {
+        return model;
     }
 
     public FuelType getFuelType() {
@@ -117,8 +117,8 @@ public class Vehicle {
         this.vehicleID = vehicleID;
     }
 
-    public void setVehicleModel(VehicleModel vehicleModel) {
-        this.vehicleModel = vehicleModel;
+    public void setVehicleModel(Model model) {
+        this.model = model;
     }
 
     public void setFuelType(FuelType fuelType) {
@@ -173,9 +173,9 @@ public class Vehicle {
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleID(dto.getVehicleIDDTO());
 
-        VehicleModel vehicleModel1 = new VehicleModel();
-        vehicleModel1=vehicleModel1.buildFromDTO(dto.getVehicleModelDTO());
-        vehicle.setVehicleModel(vehicleModel1);
+        Model model1 = new Model();
+        model1 = model1.buildFromDTO(dto.getVehicleModelDTO());
+        vehicle.setVehicleModel(model1);
 
         vehicle.setFuelType(dto.getFuelTypeDTO());
         vehicle.setLicensePlate(dto.getLicensePlateDTO());
@@ -200,10 +200,10 @@ public class Vehicle {
         VehicleDTO dto = new VehicleDTO();
         dto.setVehicleIDDTO(this.getVehicleID());
 
-        VehicleModelDTO vehicleModelDTO1 = new VehicleModelDTO();
-        VehicleModel vehicleModel1 = new VehicleModel();
-        vehicleModelDTO1=vehicleModel1.buildDTO();
-        dto.setVehicleModelDTO(vehicleModelDTO1);
+        ModelDTO modelDTO1 = new ModelDTO();
+        Model model1 = new Model();
+        modelDTO1 = model1.buildDTO();
+        dto.setVehicleModelDTO(modelDTO1);
 
         dto.setFuelTypeDTO(this.getFuelType());
         dto.setLicensePlateDTO(this.getLicensePlate());

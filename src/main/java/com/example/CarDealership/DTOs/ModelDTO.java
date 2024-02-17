@@ -3,7 +3,7 @@ package com.example.CarDealership.DTOs;
 
 import org.springframework.hateoas.RepresentationModel;
 
-public class VehicleModelDTO extends RepresentationModel<VehicleModelDTO> {
+public class ModelDTO extends RepresentationModel<ModelDTO> {
 
 
     private int modelIdDTO;
@@ -12,13 +12,13 @@ public class VehicleModelDTO extends RepresentationModel<VehicleModelDTO> {
 
      private BrandDTO brandDTO;
 
-    public VehicleModelDTO(int modelIdDTO, String nameDTO, BrandDTO brandDTO) {
+    public ModelDTO(int modelIdDTO, String nameDTO, BrandDTO brandDTO) {
         this.modelIdDTO = modelIdDTO;
         this.nameDTO = nameDTO;
         this.brandDTO = brandDTO;
     }
 
-    public VehicleModelDTO()
+    public ModelDTO()
 
     {
     }

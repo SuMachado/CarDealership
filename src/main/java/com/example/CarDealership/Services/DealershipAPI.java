@@ -1,7 +1,6 @@
 package com.example.CarDealership.Services;
 
 import com.example.CarDealership.DTOs.*;
-import com.example.CarDealership.Domain.*;
 
 import java.util.List;
 
@@ -15,11 +14,11 @@ public interface DealershipAPI {
 
 
 
-    public VehicleModelDTO createVehicleModel(VehicleModelDTO model);
-    public VehicleModelDTO getVehicleModelByID(int id);
-    public List<VehicleModelDTO> vehicleModelsList();
-    public VehicleModelDTO updateVehicleModel(VehicleModelDTO modelDTO);
-    public VehicleModelDTO deleteVehicleModel(int id);
+    public ModelDTO createVehicleModel(ModelDTO model);
+    public ModelDTO getVehicleModelByID(int id);
+    public List<ModelDTO> vehicleModelsList();
+    public ModelDTO updateVehicleModel(ModelDTO modelDTO);
+    public ModelDTO deleteVehicleModel(int id);
 
 
     public VehicleDTO createVehicle(VehicleDTO vehicle);

@@ -11,7 +11,7 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
 
     private int vehicleIDDTO;
-    private VehicleModelDTO vehicleModelDTO;
+    private ModelDTO modelDTO;
     private FuelType fuelTypeDTO;
     private String licensePlateDTO;
     private double mileageDTO;
@@ -25,11 +25,11 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     private int seatsDTO;
     private Traction tractionDTO;
 
-    public VehicleDTO(int vehicleIDDTO, VehicleModelDTO vehicleModelDTO, FuelType fuelTypeDTO, String licensePlateDTO, double mileageDTO, double purchasePriceDTO,
+    public VehicleDTO(int vehicleIDDTO, ModelDTO modelDTO, FuelType fuelTypeDTO, String licensePlateDTO, double mileageDTO, double purchasePriceDTO,
                       double sellingPriceDTO, SellerDTO sellerDTO, VehicleType vehicleTypeDTO, BusinessStatus businessStatusDTO, String colourDTO, int doorsDTO,
                       int seatsDTO, Traction tractionDTO) {
         this.vehicleIDDTO = vehicleIDDTO;
-        this.vehicleModelDTO = vehicleModelDTO;
+        this.modelDTO = modelDTO;
         this.fuelTypeDTO = fuelTypeDTO;
         this.licensePlateDTO = licensePlateDTO;
         this.mileageDTO = mileageDTO;
@@ -51,8 +51,8 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
         return vehicleIDDTO;
     }
 
-    public VehicleModelDTO getVehicleModelDTO() {
-        return vehicleModelDTO;
+    public ModelDTO getVehicleModelDTO() {
+        return modelDTO;
     }
 
     public FuelType getFuelTypeDTO() {
@@ -107,8 +107,8 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
         this.vehicleIDDTO = vehicleIDDTO;
     }
 
-    public void setVehicleModelDTO(VehicleModelDTO vehicleModelDTO) {
-        this.vehicleModelDTO = vehicleModelDTO;
+    public void setVehicleModelDTO(ModelDTO modelDTO) {
+        this.modelDTO = modelDTO;
     }
 
     public void setFuelTypeDTO(FuelType fuelTypeDTO) {

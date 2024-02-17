@@ -76,16 +76,16 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public VehicleModelDTO createVehicleModel(VehicleModelDTO model) {
-        VehicleModel v1 = new VehicleModel();
+    public ModelDTO createVehicleModel(ModelDTO model) {
+        Model v1 = new Model();
         v1= v1.buildFromDTO(model);
         v1=vehicleModelRepo.save(v1);
         return v1.buildDTO();
     }
 
     @Override
-    public VehicleModelDTO getVehicleModelByID(int id) {
-        Optional<VehicleModel> m1= vehicleModelRepo.findById(id);
+    public ModelDTO getVehicleModelByID(int id) {
+        Optional<Model> m1= vehicleModelRepo.findById(id);
         if (m1!=null && m1.isPresent()){
 
             return m1.get().buildDTO();
@@ -94,29 +94,29 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public List<VehicleModelDTO> vehicleModelsList() {
-        List<VehicleModel> vehicleModels = vehicleModelRepo.findAll();
-        if(vehicleModels.isEmpty()){
+    public List<ModelDTO> vehicleModelsList() {
+        List<Model> models = vehicleModelRepo.findAll();
+        if(models.isEmpty()){
             return null;
         }
-        List<VehicleModelDTO> vehicleModelDTOS = new ArrayList<>();
-        for(VehicleModel vehicleModel : vehicleModels){
-            vehicleModelDTOS.add(vehicleModel.buildDTO());
+        List<ModelDTO> modelDTOS = new ArrayList<>();
+        for(Model model : models){
+            modelDTOS.add(model.buildDTO());
         }
-        return vehicleModelDTOS;
+        return modelDTOS;
     }
 
     @Override
-    public VehicleModelDTO updateVehicleModel(VehicleModelDTO modelDTO) {
-        VehicleModel v1= new VehicleModel();
+    public ModelDTO updateVehicleModel(ModelDTO modelDTO) {
+        Model v1= new Model();
         v1= v1.buildFromDTO(modelDTO);
         v1=vehicleModelRepo.save(v1);
         return v1.buildDTO();
     }
 
     @Override
-    public VehicleModelDTO deleteVehicleModel(int id) {
-        VehicleModel v1= vehicleModelRepo.findById(id).get();
+    public ModelDTO deleteVehicleModel(int id) {
+        Model v1= vehicleModelRepo.findById(id).get();
 
         vehicleModelRepo.delete(v1);
         return v1.buildDTO();
