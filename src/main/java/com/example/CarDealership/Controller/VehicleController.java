@@ -78,7 +78,7 @@ public class VehicleController {
             BrandDTO b = api.updateBrand(brandDTO);
             return new ResponseEntity<>(b, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
@@ -134,14 +134,14 @@ public class VehicleController {
             ModelDTO m = api.updateVehicleModel(modelDTO);
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteModel/{id}")
     public ResponseEntity<ModelDTO> deleteModel(@PathVariable("id") int id) {
         ModelDTO modelDTO = api.getVehicleModelByID(id);
         if (modelDTO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         modelDTO = api.deleteVehicleModel(id);
         return new ResponseEntity<>(modelDTO, HttpStatus.OK);
@@ -190,14 +190,14 @@ public class VehicleController {
             VehicleDTO v = api.updateVehicle(vehicleDTO);
             return new ResponseEntity<>(v, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteVehicle/{id}")
     public ResponseEntity<VehicleDTO> deleteVehicle(@PathVariable("id") String id) {
         VehicleDTO vehicleDTO = api.getVehicleByVin(id);
         if (vehicleDTO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         vehicleDTO = api.deleteVehicle(id);
         return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);

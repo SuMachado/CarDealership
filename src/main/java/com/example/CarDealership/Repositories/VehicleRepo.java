@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VehicleRepo extends JpaRepository<Vehicle, String> {
 
-    @Query("SELECT v FROM Vehicle v WHERE v.BusinessStatus = :businessStatus")
+    @Query("SELECT v FROM Vehicle v WHERE v.businessStatus = :businessStatus")
     List<Vehicle> findByStatus(BusinessStatus businessStatus);
 
     @Query("SELECT v FROM Vehicle v WHERE v.buyerID = :buyerId")

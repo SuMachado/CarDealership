@@ -232,8 +232,46 @@ public class DealershipAPIImpl implements DealershipAPI{
         return v1.buildDTO();
     }
 
+    public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status){
+
+        Vehicle v1= vehicleRepo.findById(vin).get();
+        if (v1 == null){
+            return null;
+        }
+        v1.setBusinessStatus(status);
+        vehicleRepo.save(v1);
+        return v1.buildDTO();
+
+    }
+
+    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status){
+        List<Vehicle> vehicles = vehicleRepo.findByStatus(status);
+        if(vehicles.isEmpty()){
+            return null;
+        }
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle : vehicles){
+            vehicleDTOS.add(vehicle.buildDTO());
+        }
+        return vehicleDTOS;
+    }
+
+    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId){
+        List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
+        if(vehicles.isEmpty()){
+            return null;
+        }
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle : vehicles){
+            vehicleDTOS.add(vehicle.buildDTO());
+        }
+        return vehicleDTOS;
+    }
 
 
+
+
+//CarDealership methods
 
     @Override
     public CarDealershipDTO createDealership(CarDealershipDTO dealership) {
@@ -281,40 +319,5 @@ public class DealershipAPIImpl implements DealershipAPI{
         CarDealership d1= dealershipRepo.findById(id).get();
         dealershipRepo.delete(d1);
         return d1.buildDTO();
-    }
-    public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status){
-
-        Vehicle v1= vehicleRepo.findById(vin).get();
-        if (v1 == null){
-            return null;
-        }
-        v1.setBusinessStatus(status);
-        vehicleRepo.save(v1);
-        return v1.buildDTO();
-
-    }
-
-    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status){
-        List<Vehicle> vehicles = vehicleRepo.findByStatus(status);
-        if(vehicles.isEmpty()){
-            return null;
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for(Vehicle vehicle : vehicles){
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
-    }
-
-    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId){
-        List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
-        if(vehicles.isEmpty()){
-            return null;
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for(Vehicle vehicle : vehicles){
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
     }
 }
