@@ -145,9 +145,9 @@ public class VehicleController {
     }
 
 
-    @GetMapping("/vehicle/{id}")
-    public ResponseEntity<VehicleDTO> getVehicleByID(@PathVariable("id") int id) {
-        VehicleDTO vehicle = api.getVehicleByID(id);
+    @GetMapping("/vehicle/{vin}")
+    public ResponseEntity<VehicleDTO> getVehicleByVin(@PathVariable("vin") String id) {
+        VehicleDTO vehicle = api.getVehicleByVin(id);
         if (vehicle != null) {
             return new ResponseEntity<>(vehicle, HttpStatus.OK);
         }
@@ -165,23 +165,23 @@ public class VehicleController {
 
     @PostMapping(value = "/createVehicle", consumes = "application/json", produces = "application/json")
     public HttpEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
-        VehicleDTO vehicleDTO1 = api.getVehicleByID(vehicleDTO.getVehicleIDDTO());
+        VehicleDTO vehicleDTO1 = api.getVehicleByVin(vehicleDTO.getVinDTO());
         if (vehicleDTO1 == null) {
             vehicleDTO1 = api.createVehicle(vehicleDTO);
-            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).getVehicleByID(vehicleDTO.getVehicleIDDTO())).withSelfRel());
+            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).getVehicleByVin(vehicleDTO.getVinDTO())).withSelfRel());
             vehicleDTO1.add(linkTo(methodOn(VehicleController.class).getVehicles()).withRel("see_all_vehicles"));
-            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).updateVehicle(vehicleDTO.getVehicleIDDTO(),vehicleDTO)).withRel("update"));
-            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).deleteVehicle(vehicleDTO.getVehicleIDDTO())).withRel("delete"));
+            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).updateVehicle(vehicleDTO.getVinDTO(),vehicleDTO)).withRel("update"));
+            vehicleDTO1.add(linkTo(methodOn(VehicleController.class).deleteVehicle(vehicleDTO.getVinDTO())).withRel("delete"));
             return new ResponseEntity<>(vehicleDTO1, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/updateVehicle/{id}")
-    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("id") int id, VehicleDTO vehicleDTO) {
-        VehicleDTO vehicleDTO1 = api.getVehicleByID(id);
+    @PutMapping("/updateVehicle/{vin}")
+    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("vin") String id, VehicleDTO vehicleDTO) {
+        VehicleDTO vehicleDTO1 = api.getVehicleByVin(id);
         if (vehicleDTO1 != null) {
-            if (vehicleDTO.getVehicleIDDTO() != id) {
+            if (vehicleDTO.getVinDTO() != id) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             VehicleDTO v = api.updateVehicle(vehicleDTO);
@@ -191,8 +191,8 @@ public class VehicleController {
     }
 
     @DeleteMapping("/deleteVehicle/{id}")
-    public HttpEntity<VehicleDTO> deleteVehicle(@PathVariable("id") int id) {
-        VehicleDTO vehicleDTO = api.getVehicleByID(id);
+    public HttpEntity<VehicleDTO> deleteVehicle(@PathVariable("id") String id) {
+        VehicleDTO vehicleDTO = api.getVehicleByVin(id);
         if (vehicleDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

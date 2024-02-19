@@ -2,6 +2,7 @@ package com.example.CarDealership.Services;
 
 import com.example.CarDealership.DTOs.*;
 import com.example.CarDealership.Domain.*;
+import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,27 +96,6 @@ public class DealershipAPIImpl implements DealershipAPI{
 
         return null;
     }
-
-    //
-//    public Model buildFromDTO(ModelDTO modelDTO) {
-//        Model model = new Model();
-//        model.setModelId(modelDTO.getModelIdDTO());
-//        model.setName(modelDTO.getNameDTO());
-//
-//        // Obtém a BrandDTO do ModelDTO
-//        BrandDTO brandDTO = modelDTO.getBrandDTO();
-//
-//        // Cria uma instância de Brand e associa os valores
-//        Brand brand = new Brand();
-//        brand.setBrandId(brandDTO.getBrandIdDTO());
-//        brand.setName(brandDTO.getNameDTO());
-//
-//        // Salva ou obtém a entidade persistida (Brand) antes de associá-la ao Model
-//        Brand persistedBrand = brandRepository.findById(brand.getBrandId()).orElse(brand);
-//        model.setBrand(persistedBrand);
-//
-//        return model;
-//    }
 
     @Override
     public ModelDTO getVehicleModelByID(int id) {
@@ -213,7 +193,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public VehicleDTO getVehicleByID(int id) {
+    public VehicleDTO getVehicleByVin(String id) {
         Optional<Vehicle> v1= vehicleRepo.findById(id);
         if (v1.isPresent()){
 
@@ -245,7 +225,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     }
 
     @Override
-    public VehicleDTO deleteVehicle(int id) {
+    public VehicleDTO deleteVehicle(String id) {
 
         Vehicle v1= vehicleRepo.findById(id).get();
         vehicleRepo.delete(v1);
@@ -302,4 +282,16 @@ public class DealershipAPIImpl implements DealershipAPI{
         dealershipRepo.delete(d1);
         return d1.buildDTO();
     }
+    public VehicleDTO changeStatus(int id, BusinessStatus status){
+
+        return null;
+
+    }
+//    public VehicleDTO getVehicleByLicensePlate(String licensePlate) {
+//        Optional<Vehicle> v1= vehicleRepo.findByLicensePlate(licensePlate);
+//        if (v1.isPresent()){
+//            return v1.get().buildDTO();
+//        }
+//        return null;
+//    }
 }

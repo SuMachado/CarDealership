@@ -22,10 +22,10 @@ public interface DealershipAPI {
 
 
     VehicleDTO createVehicle(VehicleDTO vehicle);
-    VehicleDTO getVehicleByID(int id);
+    VehicleDTO getVehicleByVin(String id);
     List<VehicleDTO>vehiclesList();
     VehicleDTO updateVehicle(VehicleDTO vehicleDTO);
-    VehicleDTO deleteVehicle(int id);
+    VehicleDTO deleteVehicle(String id);
 
 
     SellerDTO createSeller(SellerDTO seller);

@@ -3,5 +3,5 @@ package com.example.CarDealership.Repositories;
 import com.example.CarDealership.Domain.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VehicleRepo extends JpaRepository<Vehicle, Integer> {
+public interface VehicleRepo extends JpaRepository<Vehicle, String> {
 }

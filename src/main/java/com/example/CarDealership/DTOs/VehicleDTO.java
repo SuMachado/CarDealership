@@ -11,7 +11,7 @@ import org.springframework.hateoas.RepresentationModel;
 public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
 
-    private int vehicleIDDTO;
+    private String vinDTO;
     private ModelDTO modelDTO;
     private FuelType fuelTypeDTO;
     private String licensePlateDTO;
@@ -52,8 +52,8 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     public VehicleDTO() {
     }
 
-    public int getVehicleIDDTO() {
-        return vehicleIDDTO;
+    public String getVinDTO() {
+        return vinDTO;
     }
 
     public ModelDTO getVehicleModelDTO() {
@@ -132,8 +132,8 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
         this.yearPlateDTO = yearPlateDTO;
     }
 
-    public void setVehicleIDDTO(int vehicleIDDTO) {
-        this.vehicleIDDTO = vehicleIDDTO;
+    public void setVinDTO(String vinDTO) {
+        this.vinDTO = vinDTO;
     }
 
     public void setVehicleModelDTO(ModelDTO modelDTO) {

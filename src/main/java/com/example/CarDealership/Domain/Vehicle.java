@@ -13,8 +13,7 @@ import jakarta.persistence.*;
 public class Vehicle {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int vehicleID;
+    private String vin;
     @ManyToOne
     private Model model;
     @Enumerated(EnumType.ORDINAL)
@@ -62,8 +61,8 @@ public class Vehicle {
 //    }
 
 
-    public int getVehicleID() {
-        return vehicleID;
+    public String getVin() {
+        return vin;
     }
 
     public Model getVehicleModel() {
@@ -150,8 +149,8 @@ public class Vehicle {
         this.transactionID = transactionID;
     }
 
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
     public void setVehicleModel(Model model) {
@@ -208,7 +207,7 @@ public class Vehicle {
 
     public Vehicle buildFromDTO(VehicleDTO dto){
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleID(dto.getVehicleIDDTO());
+        vehicle.setVin(dto.getVinDTO());
 
         Model model1 = new Model();
         model1 = model1.buildFromDTO(dto.getVehicleModelDTO());
@@ -238,7 +237,7 @@ public class Vehicle {
 
     public VehicleDTO buildDTO(){
         VehicleDTO dto = new VehicleDTO();
-        dto.setVehicleIDDTO(this.getVehicleID());
+        dto.setVinDTO(this.getVin());
 
         ModelDTO modelDTO1 = new ModelDTO();
         Model model1 = new Model();
