@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DealershipAPIImpl implements DealershipAPI{
+public class DealershipAPIImpl implements DealershipAPI {
 
     @Autowired
     BrandRepo brandRepo;
@@ -29,16 +29,15 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public BrandDTO createBrand(BrandDTO brandDTO) {
         Brand b1 = new Brand();
-        b1= b1.buildFromDTO(brandDTO);
-        b1=brandRepo.save(b1);
+        b1 = b1.buildFromDTO(brandDTO);
+        b1 = brandRepo.save(b1);
         return b1.buildDTO();
     }
 
     @Override
     public BrandDTO getBrandByID(int id) {
-        System.out.println("brandRepo: " + brandRepo);
-        Optional<Brand> b1= brandRepo.findById(id);
-        if (b1.isPresent()){
+        Optional<Brand> b1 = brandRepo.findById(id);
+        if (b1.isPresent()) {
 
             return b1.get().buildDTO();
         }
@@ -47,13 +46,12 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public List<BrandDTO> brandsList() {
-        System.out.println("brandRepo: " + brandRepo);
         List<Brand> brands = brandRepo.findAll();
-        if(brands.isEmpty()){
-            return null;
+        if (brands.isEmpty()) {
+            return new ArrayList<>();
         }
         List<BrandDTO> brandDTOS = new ArrayList<>();
-        for(Brand brand : brands){
+        for (Brand brand : brands) {
             brandDTOS.add(brand.buildDTO());
         }
         return brandDTOS;
@@ -61,15 +59,15 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public BrandDTO updateBrand(BrandDTO brandDTO) {
-        Brand b1=new Brand();
-        b1= b1.buildFromDTO(brandDTO);
-        b1=brandRepo.save(b1);
+        Brand b1 = new Brand();
+        b1 = b1.buildFromDTO(brandDTO);
+        b1 = brandRepo.save(b1);
         return b1.buildDTO();
     }
 
     @Override
     public BrandDTO deleteBrand(int id) {
-        Brand b1= brandRepo.findById(id).get();
+        Brand b1 = brandRepo.findById(id).get();
 
         brandRepo.delete(b1);
         return b1.buildDTO();
@@ -78,19 +76,19 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public ModelDTO createVehicleModel(ModelDTO model) {
         Model v1 = new Model();
-        v1= v1.buildFromDTO(model);
+        v1 = v1.buildFromDTO(model);
         BrandDTO brandDTO = model.getBrandDTO();
-        if (brandDTO!=null){
+        if (brandDTO != null) {
             Brand d = brandRepo.findById(brandDTO.getBrandIdDTO()).orElse(null);
-            if(d==null){
+            if (d == null) {
                 Brand newBrand = new Brand();
                 newBrand.setName(brandDTO.getNameDTO());
-                newBrand=brandRepo.save(newBrand);
-                d=newBrand;
+                newBrand = brandRepo.save(newBrand);
+                d = newBrand;
 
             }
             v1.setBrand(d);
-            v1=vehicleModelRepo.save(v1);
+            v1 = vehicleModelRepo.save(v1);
             return v1.buildDTO();
         }
 
@@ -99,8 +97,8 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public ModelDTO getVehicleModelByID(int id) {
-        Optional<Model> m1= vehicleModelRepo.findById(id);
-        if (m1.isPresent()){
+        Optional<Model> m1 = vehicleModelRepo.findById(id);
+        if (m1.isPresent()) {
 
             return m1.get().buildDTO();
         }
@@ -110,11 +108,11 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public List<ModelDTO> vehicleModelsList() {
         List<Model> models = vehicleModelRepo.findAll();
-        if(models.isEmpty()){
-            return null;
+        if (models.isEmpty()) {
+            return new ArrayList<>();
         }
         List<ModelDTO> modelDTOS = new ArrayList<>();
-        for(Model model : models){
+        for (Model model : models) {
             modelDTOS.add(model.buildDTO());
         }
         return modelDTOS;
@@ -122,15 +120,28 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public ModelDTO updateVehicleModel(ModelDTO modelDTO) {
-        Model v1= new Model();
-        v1= v1.buildFromDTO(modelDTO);
-        v1=vehicleModelRepo.save(v1);
+        Model v1 = new Model();
+        v1 = v1.buildFromDTO(modelDTO);
+        BrandDTO brandDTO = modelDTO.getBrandDTO();
+        if (brandDTO != null) {
+            Brand d = brandRepo.findById(brandDTO.getBrandIdDTO()).orElse(null);
+            if (d == null) {
+                Brand newBrand = new Brand();
+                newBrand.setName(brandDTO.getNameDTO());
+                newBrand = brandRepo.save(newBrand);
+                d = newBrand;
+            }
+            v1.setBrand(d);
+        }
+        v1 = vehicleModelRepo.save(v1);
+
+
         return v1.buildDTO();
     }
 
     @Override
     public ModelDTO deleteVehicleModel(int id) {
-        Model v1= vehicleModelRepo.findById(id).get();
+        Model v1 = vehicleModelRepo.findById(id).get();
 
         vehicleModelRepo.delete(v1);
         return v1.buildDTO();
@@ -140,15 +151,15 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public SellerDTO createSeller(SellerDTO seller) {
         Seller s1 = new Seller();
-        s1= s1.buildFromDTO(seller);
-        s1=sellerRepo.save(s1);
+        s1 = s1.buildFromDTO(seller);
+        s1 = sellerRepo.save(s1);
         return s1.buildDTO();
     }
 
     @Override
     public SellerDTO getSellerByID(int id) {
-        Optional<Seller> s1= sellerRepo.findById(id);
-        if (s1.isPresent()){
+        Optional<Seller> s1 = sellerRepo.findById(id);
+        if (s1.isPresent()) {
             return s1.get().buildDTO();
         }
         return null;
@@ -157,11 +168,11 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public List<SellerDTO> sellersList() {
         List<Seller> sellers = sellerRepo.findAll();
-        if(sellers.isEmpty()){
+        if (sellers.isEmpty()) {
             return null;
         }
         List<SellerDTO> sellerDTOS = new ArrayList<>();
-        for(Seller seller : sellers){
+        for (Seller seller : sellers) {
             sellerDTOS.add(seller.buildDTO());
         }
         return sellerDTOS;
@@ -169,16 +180,16 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public SellerDTO updateSeller(SellerDTO sellerDTO) {
-        Seller s1= new Seller();
+        Seller s1 = new Seller();
 
-        s1= s1.buildFromDTO(sellerDTO);
-        s1=sellerRepo.save(s1);
+        s1 = s1.buildFromDTO(sellerDTO);
+        s1 = sellerRepo.save(s1);
         return s1.buildDTO();
     }
 
     @Override
     public SellerDTO deleteSeller(int id) {
-        Seller s1= sellerRepo.findById(id).get();
+        Seller s1 = sellerRepo.findById(id).get();
         sellerRepo.delete(s1);
         return s1.buildDTO();
     }
@@ -187,15 +198,15 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public VehicleDTO createVehicle(VehicleDTO vehicle) {
         Vehicle v1 = new Vehicle();
-        v1= v1.buildFromDTO(vehicle);
-        v1=vehicleRepo.save(v1);
+        v1 = v1.buildFromDTO(vehicle);
+        v1 = vehicleRepo.save(v1);
         return v1.buildDTO();
     }
 
     @Override
     public VehicleDTO getVehicleByVin(String id) {
-        Optional<Vehicle> v1= vehicleRepo.findById(id);
-        if (v1.isPresent()){
+        Optional<Vehicle> v1 = vehicleRepo.findById(id);
+        if (v1.isPresent()) {
 
             return v1.get().buildDTO();
         }
@@ -205,11 +216,11 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public List<VehicleDTO> vehiclesList() {
         List<Vehicle> vehicles = vehicleRepo.findAll();
-        if(vehicles.isEmpty()){
+        if (vehicles.isEmpty()) {
             return null;
         }
         List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for(Vehicle vehicle : vehicles){
+        for (Vehicle vehicle : vehicles) {
             vehicleDTOS.add(vehicle.buildDTO());
         }
         return vehicleDTOS;
@@ -217,25 +228,25 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public VehicleDTO updateVehicle(VehicleDTO vehicleDTO) {
-        Vehicle v1= new Vehicle();
+        Vehicle v1 = new Vehicle();
 
-        v1= v1.buildFromDTO(vehicleDTO);
-        v1=vehicleRepo.save(v1);
+        v1 = v1.buildFromDTO(vehicleDTO);
+        v1 = vehicleRepo.save(v1);
         return v1.buildDTO();
     }
 
     @Override
     public VehicleDTO deleteVehicle(String id) {
 
-        Vehicle v1= vehicleRepo.findById(id).get();
+        Vehicle v1 = vehicleRepo.findById(id).get();
         vehicleRepo.delete(v1);
         return v1.buildDTO();
     }
 
-    public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status){
+    public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status) {
 
-        Vehicle v1= vehicleRepo.findById(vin).get();
-        if (v1 == null){
+        Vehicle v1 = vehicleRepo.findById(vin).get();
+        if (v1 == null) {
             return null;
         }
         v1.setBusinessStatus(status);
@@ -244,31 +255,29 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     }
 
-    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status){
+    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status) {
         List<Vehicle> vehicles = vehicleRepo.findByStatus(status);
-        if(vehicles.isEmpty()){
+        if (vehicles.isEmpty()) {
             return null;
         }
         List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for(Vehicle vehicle : vehicles){
+        for (Vehicle vehicle : vehicles) {
             vehicleDTOS.add(vehicle.buildDTO());
         }
         return vehicleDTOS;
     }
 
-    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId){
+    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId) {
         List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
-        if(vehicles.isEmpty()){
+        if (vehicles.isEmpty()) {
             return null;
         }
         List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for(Vehicle vehicle : vehicles){
+        for (Vehicle vehicle : vehicles) {
             vehicleDTOS.add(vehicle.buildDTO());
         }
         return vehicleDTOS;
     }
-
-
 
 
 //CarDealership methods
@@ -276,15 +285,15 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public CarDealershipDTO createDealership(CarDealershipDTO dealership) {
         CarDealership d1 = new CarDealership();
-        d1= d1.buildFromDTO(dealership);
-        d1=dealershipRepo.save(d1);
+        d1 = d1.buildFromDTO(dealership);
+        d1 = dealershipRepo.save(d1);
         return d1.buildDTO();
     }
 
     @Override
     public CarDealershipDTO getDealershipByID(int id) {
-        Optional<CarDealership> d1= dealershipRepo.findById(id);
-        if (d1.isPresent()){
+        Optional<CarDealership> d1 = dealershipRepo.findById(id);
+        if (d1.isPresent()) {
 
             return d1.get().buildDTO();
         }
@@ -295,11 +304,11 @@ public class DealershipAPIImpl implements DealershipAPI{
     public List<CarDealershipDTO> dealershipList() {
 
         List<CarDealership> carDealerships = dealershipRepo.findAll();
-        if(carDealerships.isEmpty()){
+        if (carDealerships.isEmpty()) {
             return null;
         }
         List<CarDealershipDTO> carDealershipDTOS = new ArrayList<>();
-        for(CarDealership carDealership : carDealerships){
+        for (CarDealership carDealership : carDealerships) {
             carDealershipDTOS.add(carDealership.buildDTO());
         }
         return carDealershipDTOS;
@@ -307,16 +316,16 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public CarDealershipDTO updateDealership(CarDealershipDTO dealershipDTO) {
-        CarDealership d1= new CarDealership();
-        d1= d1.buildFromDTO(dealershipDTO);
-        d1=dealershipRepo.save(d1);
+        CarDealership d1 = new CarDealership();
+        d1 = d1.buildFromDTO(dealershipDTO);
+        d1 = dealershipRepo.save(d1);
         return d1.buildDTO();
     }
 
     @Override
     public CarDealershipDTO deleteDealership(int id) {
 
-        CarDealership d1= dealershipRepo.findById(id).get();
+        CarDealership d1 = dealershipRepo.findById(id).get();
         dealershipRepo.delete(d1);
         return d1.buildDTO();
     }

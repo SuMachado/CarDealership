@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Seller {
 
     @Id
@@ -23,17 +27,6 @@ public class Seller {
 
     private String email;
 
-//    public Seller(int sellerId, String name, String address, String taxNumber, String phoneNumber, String email) {
-//        this.sellerId = sellerId;
-//        this.name = name;
-//        this.address = address;
-//        this.taxNumber = taxNumber;
-//        this.phoneNumber = phoneNumber;
-//        this.email = email;
-//    }
-
-    public Seller() {
-    }
 
     public int getSellerId() {
         return sellerId;

@@ -3,12 +3,16 @@ package com.example.CarDealership.Domain;
 import com.example.CarDealership.DTOs.CarDealershipDTO;
 import com.example.CarDealership.DTOs.VehicleDTO;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class CarDealership {
 
     @Id

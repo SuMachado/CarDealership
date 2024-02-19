@@ -2,8 +2,12 @@ package com.example.CarDealership.Domain;
 
 import com.example.CarDealership.DTOs.ModelDTO;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Model {
 
     @Id

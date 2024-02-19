@@ -118,7 +118,7 @@ public class VehicleController {
             modelDTO.add(linkTo(methodOn(VehicleController.class).getModelByID(model.getModelIdDTO())).withSelfRel());
             modelDTO.add(linkTo(methodOn(VehicleController.class).getModels()).withRel("see_all_models"));
             modelDTO.add(linkTo(methodOn(VehicleController.class).updateModel(model.getModelIdDTO(), model)).withRel("update"));
-            modelDTO.add(linkTo(methodOn(VehicleController.class).deleteBrand(model.getModelIdDTO())).withRel("delete"));
+            modelDTO.add(linkTo(methodOn(VehicleController.class).deleteModel(model.getModelIdDTO())).withRel("delete"));
             return new ResponseEntity<>(modelDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -144,6 +144,7 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         modelDTO = api.deleteVehicleModel(id);
+
         return new ResponseEntity<>(modelDTO, HttpStatus.OK);
     }
 

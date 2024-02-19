@@ -4,10 +4,13 @@ import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
 import com.example.CarDealership.Enums.VehicleType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
 
@@ -29,28 +32,7 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     private int yearPlateDTO;
     private int buyerIDDTO;
     private int transactionIDDTO;
-//
-//    public VehicleDTO(int vehicleIDDTO, ModelDTO modelDTO, FuelType fuelTypeDTO, String licensePlateDTO, double mileageDTO, double purchasePriceDTO,
-//                      double sellingPriceDTO, SellerDTO sellerDTO, VehicleType vehicleTypeDTO, BusinessStatus businessStatusDTO, String colourDTO, int doorsDTO,
-//                      int seatsDTO, Traction tractionDTO) {
-//        this.vehicleIDDTO = vehicleIDDTO;
-//        this.modelDTO = modelDTO;
-//        this.fuelTypeDTO = fuelTypeDTO;
-//        this.licensePlateDTO = licensePlateDTO;
-//        this.mileageDTO = mileageDTO;
-//        this.purchasePriceDTO = purchasePriceDTO;
-//        this.sellingPriceDTO = sellingPriceDTO;
-//        this.sellerDTO = sellerDTO;
-//        this.vehicleTypeDTO = vehicleTypeDTO;
-//        this.businessStatusDTO = businessStatusDTO;
-//        this.colourDTO = colourDTO;
-//        this.doorsDTO = doorsDTO;
-//        this.seatsDTO = seatsDTO;
-//        this.tractionDTO = tractionDTO;
-//    }
 
-    public VehicleDTO() {
-    }
 
     public String getVinDTO() {
         return vinDTO;

@@ -1,8 +1,12 @@
 package com.example.CarDealership.DTOs;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class BrandDTO  extends RepresentationModel<BrandDTO> {
 
 
@@ -10,8 +14,6 @@ public class BrandDTO  extends RepresentationModel<BrandDTO> {
     private String nameDTO;
 
 
-    public BrandDTO() {
-    }
     public int getBrandIdDTO() {
         return brandIdDTO;
     }

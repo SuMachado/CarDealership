@@ -8,8 +8,12 @@ import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
 import com.example.CarDealership.Enums.VehicleType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Vehicle {
 
     @Id
@@ -37,28 +41,6 @@ public class Vehicle {
 
     private int buyerID;
     private int transactionID;
-//
-//    public Vehicle(int vehicleID, Model model, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
-//                   double sellingPrice, Seller seller, VehicleType vehicleType, BusinessStatus businessStatus, String colour, int doors,
-//                   int seats, Traction traction) {
-//        this.vehicleID = vehicleID;
-//        this.model = model;
-//        this.fuelType = fuelType;
-//        this.licensePlate = licensePlate;
-//        this.mileage = mileage;
-//        this.purchasePrice = purchasePrice;
-//        this.sellingPrice = sellingPrice;
-//        this.seller = seller;
-//        this.vehicleType = vehicleType;
-//        this.businessStatus = businessStatus;
-//        this.colour = colour;
-//        this.doors = doors;
-//        this.seats = seats;
-//        this.traction=traction;
-//    }
-//
-//    public Vehicle() {
-//    }
 
 
     public String getVin() {
