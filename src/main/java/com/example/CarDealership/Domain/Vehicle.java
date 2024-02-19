@@ -34,28 +34,33 @@ public class Vehicle {
     private int seats;
     @Enumerated(EnumType.ORDINAL)
     private Traction traction;
+    private int yearPlate;
 
-    public Vehicle(int vehicleID, Model model, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
-                   double sellingPrice, Seller seller, VehicleType vehicleType, BusinessStatus businessStatus, String colour, int doors,
-                   int seats, Traction traction) {
-        this.vehicleID = vehicleID;
-        this.model = model;
-        this.fuelType = fuelType;
-        this.licensePlate = licensePlate;
-        this.mileage = mileage;
-        this.purchasePrice = purchasePrice;
-        this.sellingPrice = sellingPrice;
-        this.seller = seller;
-        this.vehicleType = vehicleType;
-        this.businessStatus = businessStatus;
-        this.colour = colour;
-        this.doors = doors;
-        this.seats = seats;
-        this.traction=traction;
-    }
+    private int buyerID;
+    private int transactionID;
+//
+//    public Vehicle(int vehicleID, Model model, FuelType fuelType, String licensePlate, double mileage, double purchasePrice,
+//                   double sellingPrice, Seller seller, VehicleType vehicleType, BusinessStatus businessStatus, String colour, int doors,
+//                   int seats, Traction traction) {
+//        this.vehicleID = vehicleID;
+//        this.model = model;
+//        this.fuelType = fuelType;
+//        this.licensePlate = licensePlate;
+//        this.mileage = mileage;
+//        this.purchasePrice = purchasePrice;
+//        this.sellingPrice = sellingPrice;
+//        this.seller = seller;
+//        this.vehicleType = vehicleType;
+//        this.businessStatus = businessStatus;
+//        this.colour = colour;
+//        this.doors = doors;
+//        this.seats = seats;
+//        this.traction=traction;
+//    }
+//
+//    public Vehicle() {
+//    }
 
-    public Vehicle() {
-    }
 
     public int getVehicleID() {
         return vehicleID;
@@ -111,6 +116,38 @@ public class Vehicle {
 
     public Traction getTraction() {
         return traction;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public int getYearPlate() {
+        return yearPlate;
+    }
+
+    public int getBuyerID() {
+        return buyerID;
+    }
+
+    public int getTransactionID() {
+        return transactionID;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setYearPlate(int yearPlate) {
+        this.yearPlate = yearPlate;
+    }
+
+    public void setBuyerID(int buyerID) {
+        this.buyerID = buyerID;
+    }
+
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
     }
 
     public void setVehicleID(int vehicleID) {
@@ -193,6 +230,9 @@ public class Vehicle {
         vehicle.setDoors(dto.getDoorsDTO());
         vehicle.setSeats(dto.getSeatsDTO());
         vehicle.setTraction(dto.getTractionDTO());
+        vehicle.setYearPlate(dto.getYearPlateDTO());
+        vehicle.setBuyerID(dto.getBuyerIDDTO());
+        vehicle.setTransactionID(dto.getTransactionIDDTO());
         return vehicle;
     }
 
@@ -222,6 +262,9 @@ public class Vehicle {
         dto.setDoorsDTO(this.getDoors());
         dto.setSeatsDTO(this.getSeats());
         dto.setTractionDTO(this.getTraction());
+        dto.setYearPlateDTO(this.getYearPlate());
+        dto.setBuyerIDDTO(this.getBuyerID());
+        dto.setTransactionIDDTO(this.getTransactionID());
         return dto;
     }
 }

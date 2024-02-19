@@ -14,14 +14,14 @@ public class Model {
     @ManyToOne
      private Brand brand;
 
-    public Model(int modelId, String name, Brand brand) {
-        this.modelId = modelId;
-        this.name = name;
-        this.brand=brand;
-    }
-
-    public Model() {
-    }
+//    public Model(int modelId, String name, Brand brand) {
+//        this.modelId = modelId;
+//        this.name = name;
+//        this.brand=brand;
+//    }
+//
+//    public Model() {
+//    }
 
     public int getModelId() {
         return modelId;
@@ -55,6 +55,7 @@ public class Model {
 
         model.setBrand(brand1.buildFromDTO(modelDTO.getBrandDTO()));
         return model;}
+
 
     public ModelDTO buildDTO() {
         ModelDTO modelDTO = new ModelDTO();

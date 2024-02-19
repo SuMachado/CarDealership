@@ -4,6 +4,7 @@ import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Enums.FuelType;
 import com.example.CarDealership.Enums.Traction;
 import com.example.CarDealership.Enums.VehicleType;
+import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
 
 
@@ -23,26 +24,30 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     private String colourDTO;
     private int doorsDTO;
     private int seatsDTO;
+    @Getter
     private Traction tractionDTO;
-
-    public VehicleDTO(int vehicleIDDTO, ModelDTO modelDTO, FuelType fuelTypeDTO, String licensePlateDTO, double mileageDTO, double purchasePriceDTO,
-                      double sellingPriceDTO, SellerDTO sellerDTO, VehicleType vehicleTypeDTO, BusinessStatus businessStatusDTO, String colourDTO, int doorsDTO,
-                      int seatsDTO, Traction tractionDTO) {
-        this.vehicleIDDTO = vehicleIDDTO;
-        this.modelDTO = modelDTO;
-        this.fuelTypeDTO = fuelTypeDTO;
-        this.licensePlateDTO = licensePlateDTO;
-        this.mileageDTO = mileageDTO;
-        this.purchasePriceDTO = purchasePriceDTO;
-        this.sellingPriceDTO = sellingPriceDTO;
-        this.sellerDTO = sellerDTO;
-        this.vehicleTypeDTO = vehicleTypeDTO;
-        this.businessStatusDTO = businessStatusDTO;
-        this.colourDTO = colourDTO;
-        this.doorsDTO = doorsDTO;
-        this.seatsDTO = seatsDTO;
-        this.tractionDTO = tractionDTO;
-    }
+    private int yearPlateDTO;
+    private int buyerIDDTO;
+    private int transactionIDDTO;
+//
+//    public VehicleDTO(int vehicleIDDTO, ModelDTO modelDTO, FuelType fuelTypeDTO, String licensePlateDTO, double mileageDTO, double purchasePriceDTO,
+//                      double sellingPriceDTO, SellerDTO sellerDTO, VehicleType vehicleTypeDTO, BusinessStatus businessStatusDTO, String colourDTO, int doorsDTO,
+//                      int seatsDTO, Traction tractionDTO) {
+//        this.vehicleIDDTO = vehicleIDDTO;
+//        this.modelDTO = modelDTO;
+//        this.fuelTypeDTO = fuelTypeDTO;
+//        this.licensePlateDTO = licensePlateDTO;
+//        this.mileageDTO = mileageDTO;
+//        this.purchasePriceDTO = purchasePriceDTO;
+//        this.sellingPriceDTO = sellingPriceDTO;
+//        this.sellerDTO = sellerDTO;
+//        this.vehicleTypeDTO = vehicleTypeDTO;
+//        this.businessStatusDTO = businessStatusDTO;
+//        this.colourDTO = colourDTO;
+//        this.doorsDTO = doorsDTO;
+//        this.seatsDTO = seatsDTO;
+//        this.tractionDTO = tractionDTO;
+//    }
 
     public VehicleDTO() {
     }
@@ -101,6 +106,30 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
     public Traction getTractionDTO() {
         return tractionDTO;
+    }
+
+    public int getYearPlateDTO() {
+        return yearPlateDTO;
+    }
+
+    public int getBuyerIDDTO() {
+        return buyerIDDTO;
+    }
+
+    public int getTransactionIDDTO() {
+        return transactionIDDTO;
+    }
+
+    public void setBuyerIDDTO(int buyerIDDTO) {
+        this.buyerIDDTO = buyerIDDTO;
+    }
+
+    public void setTransactionIDDTO(int transactionIDDTO) {
+        this.transactionIDDTO = transactionIDDTO;
+    }
+
+    public void setYearPlateDTO(int yearPlateDTO) {
+        this.yearPlateDTO = yearPlateDTO;
     }
 
     public void setVehicleIDDTO(int vehicleIDDTO) {

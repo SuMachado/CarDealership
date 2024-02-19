@@ -35,8 +35,9 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public BrandDTO getBrandByID(int id) {
+        System.out.println("brandRepo: " + brandRepo);
         Optional<Brand> b1= brandRepo.findById(id);
-        if (b1!=null && b1.isPresent()){
+        if (b1.isPresent()){
 
             return b1.get().buildDTO();
         }
@@ -45,6 +46,7 @@ public class DealershipAPIImpl implements DealershipAPI{
 
     @Override
     public List<BrandDTO> brandsList() {
+        System.out.println("brandRepo: " + brandRepo);
         List<Brand> brands = brandRepo.findAll();
         if(brands.isEmpty()){
             return null;
@@ -59,9 +61,6 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public BrandDTO updateBrand(BrandDTO brandDTO) {
         Brand b1=new Brand();
-//        if(brandDTO.getNameDTO()!=null && !brand.getName().equals(brandDTO.getNameDTO())){
-//            b1.setName(brandDTO.getNameDTO());
-//        }
         b1= b1.buildFromDTO(brandDTO);
         b1=brandRepo.save(b1);
         return b1.buildDTO();
@@ -79,14 +78,49 @@ public class DealershipAPIImpl implements DealershipAPI{
     public ModelDTO createVehicleModel(ModelDTO model) {
         Model v1 = new Model();
         v1= v1.buildFromDTO(model);
-        v1=vehicleModelRepo.save(v1);
-        return v1.buildDTO();
+        BrandDTO brandDTO = model.getBrandDTO();
+        if (brandDTO!=null){
+            Brand d = brandRepo.findById(brandDTO.getBrandIdDTO()).orElse(null);
+            if(d==null){
+                Brand newBrand = new Brand();
+                newBrand.setName(brandDTO.getNameDTO());
+                newBrand=brandRepo.save(newBrand);
+                d=newBrand;
+
+            }
+            v1.setBrand(d);
+            v1=vehicleModelRepo.save(v1);
+            return v1.buildDTO();
+        }
+
+        return null;
     }
+
+    //
+//    public Model buildFromDTO(ModelDTO modelDTO) {
+//        Model model = new Model();
+//        model.setModelId(modelDTO.getModelIdDTO());
+//        model.setName(modelDTO.getNameDTO());
+//
+//        // Obtém a BrandDTO do ModelDTO
+//        BrandDTO brandDTO = modelDTO.getBrandDTO();
+//
+//        // Cria uma instância de Brand e associa os valores
+//        Brand brand = new Brand();
+//        brand.setBrandId(brandDTO.getBrandIdDTO());
+//        brand.setName(brandDTO.getNameDTO());
+//
+//        // Salva ou obtém a entidade persistida (Brand) antes de associá-la ao Model
+//        Brand persistedBrand = brandRepository.findById(brand.getBrandId()).orElse(brand);
+//        model.setBrand(persistedBrand);
+//
+//        return model;
+//    }
 
     @Override
     public ModelDTO getVehicleModelByID(int id) {
         Optional<Model> m1= vehicleModelRepo.findById(id);
-        if (m1!=null && m1.isPresent()){
+        if (m1.isPresent()){
 
             return m1.get().buildDTO();
         }
@@ -134,7 +168,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public SellerDTO getSellerByID(int id) {
         Optional<Seller> s1= sellerRepo.findById(id);
-        if (s1!=null && s1.isPresent()){
+        if (s1.isPresent()){
             return s1.get().buildDTO();
         }
         return null;
@@ -181,7 +215,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public VehicleDTO getVehicleByID(int id) {
         Optional<Vehicle> v1= vehicleRepo.findById(id);
-        if (v1!=null && v1.isPresent()){
+        if (v1.isPresent()){
 
             return v1.get().buildDTO();
         }
@@ -232,7 +266,7 @@ public class DealershipAPIImpl implements DealershipAPI{
     @Override
     public CarDealershipDTO getDealershipByID(int id) {
         Optional<CarDealership> d1= dealershipRepo.findById(id);
-        if (d1!=null && d1.isPresent()){
+        if (d1.isPresent()){
 
             return d1.get().buildDTO();
         }

@@ -9,10 +9,6 @@ public class BrandDTO  extends RepresentationModel<BrandDTO> {
     private int brandIdDTO;
     private String nameDTO;
 
-    public BrandDTO(int brandIdDTO, String nameDTO) {
-        this.brandIdDTO = brandIdDTO;
-        this.nameDTO = nameDTO;
-    }
 
     public BrandDTO() {
     }

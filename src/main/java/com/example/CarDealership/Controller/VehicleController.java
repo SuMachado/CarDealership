@@ -4,7 +4,9 @@ import com.example.CarDealership.DTOs.BrandDTO;
 import com.example.CarDealership.DTOs.SellerDTO;
 import com.example.CarDealership.DTOs.VehicleDTO;
 import com.example.CarDealership.DTOs.ModelDTO;
+import com.example.CarDealership.Services.DealershipAPI;
 import com.example.CarDealership.Services.DealershipAPIImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
@@ -21,7 +23,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/vehiclesCtrl")
 public class VehicleController {
 
-    DealershipAPIImpl api = new DealershipAPIImpl();
+    private final DealershipAPI api;
+
+    @Autowired
+    public VehicleController(DealershipAPIImpl api) {
+        this.api = api;
+    }
+
+
 
     @GetMapping("/brand/{id}")
     public ResponseEntity<BrandDTO> getBrandByID(@PathVariable("id") int id) {
@@ -33,7 +42,7 @@ public class VehicleController {
     }
 
     @GetMapping("/brandsList")
-    private CollectionModel<BrandDTO> getBrands() {
+    public CollectionModel<BrandDTO> getBrands() {
         List<BrandDTO> brandsList = api.brandsList();
         Link link = linkTo(methodOn(VehicleController.class).getBrands()).withSelfRel();
 
@@ -46,10 +55,10 @@ public class VehicleController {
         BrandDTO brandDTO = api.getBrandByID(brand.getBrandIdDTO());
         if (brandDTO == null) {
             brandDTO = api.createBrand(brand);
-            brandDTO.add(linkTo(methodOn(VehicleController.class).getBrandByID(brand.getBrandIdDTO())).withSelfRel());
-            brandDTO.add(linkTo(methodOn(VehicleController.class).getBrands()).withRel("see_all_brands"));
-            brandDTO.add(linkTo(methodOn(VehicleController.class).updateBrand(brand.getBrandIdDTO(), brand)).withRel("update"));
-            brandDTO.add(linkTo(methodOn(VehicleController.class).deleteBrand(brand.getBrandIdDTO())).withRel("delete"));
+            brandDTO.add(linkTo(methodOn(VehicleController.class).getBrandByID(brandDTO.getBrandIdDTO())).withSelfRel());
+            brandDTO.add(linkTo(VehicleController.class).slash("brandsList").withRel("see_all_brands"));
+            brandDTO.add(linkTo(methodOn(VehicleController.class).updateBrand(brandDTO.getBrandIdDTO(), brand)).withRel("update"));
+            brandDTO.add(linkTo(methodOn(VehicleController.class).deleteBrand(brandDTO.getBrandIdDTO())).withRel("delete"));
             return new ResponseEntity<>(brandDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -90,7 +99,7 @@ public class VehicleController {
     }
 
     @GetMapping("/ModelsList")
-    private CollectionModel<ModelDTO> getModels() {
+    public CollectionModel<ModelDTO> getModels() {
         List<ModelDTO> modelList = api.vehicleModelsList();
         Link link = linkTo(methodOn(VehicleController.class).getModels()).withSelfRel();
 
@@ -146,7 +155,7 @@ public class VehicleController {
     }
 
     @GetMapping("/vehiclesList")
-    private CollectionModel<VehicleDTO> getVehicles() {
+    public CollectionModel<VehicleDTO> getVehicles() {
         List<VehicleDTO> vehicleList = api.vehiclesList();
         Link link = linkTo(methodOn(VehicleController.class).getBrands()).withSelfRel();
 
@@ -201,7 +210,7 @@ public class VehicleController {
     }
 
     @GetMapping("/sellersList")
-    private CollectionModel<SellerDTO> getSellers() {
+    public CollectionModel<SellerDTO> getSellers() {
         List<SellerDTO> sellersList = api.sellersList();
         Link link = linkTo(methodOn(VehicleController.class).getBrands()).withSelfRel();
 

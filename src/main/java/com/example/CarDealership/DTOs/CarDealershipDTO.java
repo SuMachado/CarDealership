@@ -18,24 +18,24 @@ public class CarDealershipDTO extends RepresentationModel<CarDealershipDTO> {
     private double finalBalanceDTO;
 
     private List<VehicleDTO> vehicleDTOS;
-
-    public CarDealershipDTO(int dealerIDDTO, String nameDTO, String addressDTO, String phoneNumberDTO, double finalBalanceDTO, List<VehicleDTO> vehicleDTOS) {
-        this.dealerIDDTO = dealerIDDTO;
-        this.nameDTO = nameDTO;
-        this.addressDTO = addressDTO;
-        this.phoneNumberDTO = phoneNumberDTO;
-        this.finalBalanceDTO = finalBalanceDTO;
-        this.vehicleDTOS = new ArrayList<>(vehicleDTOS);
-    }
-
-    public CarDealershipDTO(int dealerIDDTO, String nameDTO, String addressDTO, String phoneNumberDTO, double finalBalanceDTO) {
-        this.dealerIDDTO = dealerIDDTO;
-        this.nameDTO = nameDTO;
-        this.addressDTO = addressDTO;
-        this.phoneNumberDTO = phoneNumberDTO;
-        this.finalBalanceDTO = finalBalanceDTO;
-        this.vehicleDTOS = new ArrayList<>();
-    }
+//
+//    public CarDealershipDTO(int dealerIDDTO, String nameDTO, String addressDTO, String phoneNumberDTO, double finalBalanceDTO, List<VehicleDTO> vehicleDTOS) {
+//        this.dealerIDDTO = dealerIDDTO;
+//        this.nameDTO = nameDTO;
+//        this.addressDTO = addressDTO;
+//        this.phoneNumberDTO = phoneNumberDTO;
+//        this.finalBalanceDTO = finalBalanceDTO;
+//        this.vehicleDTOS = new ArrayList<>(vehicleDTOS);
+//    }
+//
+//    public CarDealershipDTO(int dealerIDDTO, String nameDTO, String addressDTO, String phoneNumberDTO, double finalBalanceDTO) {
+//        this.dealerIDDTO = dealerIDDTO;
+//        this.nameDTO = nameDTO;
+//        this.addressDTO = addressDTO;
+//        this.phoneNumberDTO = phoneNumberDTO;
+//        this.finalBalanceDTO = finalBalanceDTO;
+//        this.vehicleDTOS = new ArrayList<>();
+//    }
 
     public CarDealershipDTO() {
     }

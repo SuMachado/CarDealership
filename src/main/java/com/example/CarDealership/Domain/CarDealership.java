@@ -26,26 +26,26 @@ public class CarDealership {
     private List<Vehicle> vehicles;
 
 
-    public CarDealership(int dealerID, String name, String address, String phoneNumber, double finalBalance, List<Vehicle> vehicles) {
-        this.dealerID = dealerID;
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.finalBalance = finalBalance;
-        this.vehicles = new ArrayList<>(vehicles);
-    }
-
-    public CarDealership(int dealerID, String name, String address, String phoneNumber, double finalBalance) {
-        this.dealerID = dealerID;
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.finalBalance = finalBalance;
-        this.vehicles= new ArrayList<>();
-    }
-
-    public CarDealership() {
-    }
+//    public CarDealership(int dealerID, String name, String address, String phoneNumber, double finalBalance, List<Vehicle> vehicles) {
+//        this.dealerID = dealerID;
+//        this.name = name;
+//        this.address = address;
+//        this.phoneNumber = phoneNumber;
+//        this.finalBalance = finalBalance;
+//        this.vehicles = new ArrayList<>(vehicles);
+//    }
+//
+//    public CarDealership(int dealerID, String name, String address, String phoneNumber, double finalBalance) {
+//        this.dealerID = dealerID;
+//        this.name = name;
+//        this.address = address;
+//        this.phoneNumber = phoneNumber;
+//        this.finalBalance = finalBalance;
+//        this.vehicles= new ArrayList<>();
+//    }
+//
+//    public CarDealership() {
+//    }
 
     public int getDealerID() {
         return dealerID;

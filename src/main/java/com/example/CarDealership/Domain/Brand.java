@@ -14,10 +14,6 @@ public class Brand {
     private int brandId;
     private String name;
 
-    public Brand(int brandId, String name) {
-        this.brandId = brandId;
-        this.name = name;
-    }
 
     public Brand() {
     }
@@ -40,9 +36,13 @@ public class Brand {
 
     public Brand buildFromDTO(BrandDTO brandDTO) {
         Brand brand = new Brand();
-        brand.setBrandId(brandDTO.getBrandIdDTO());
-        brand.setName(brandDTO.getNameDTO());
-        return brand;}
+        if (brandDTO != null) {
+            brand.setBrandId(brandDTO.getBrandIdDTO());
+            brand.setName(brandDTO.getNameDTO());
+
+        }
+        return brand;
+    }
 
     public BrandDTO buildDTO() {
         BrandDTO brandDTO = new BrandDTO();
