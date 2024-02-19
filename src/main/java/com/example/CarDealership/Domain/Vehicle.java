@@ -133,10 +133,6 @@ public class Vehicle {
         return transactionID;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
     public void setYearPlate(int yearPlate) {
         this.yearPlate = yearPlate;
     }

@@ -282,16 +282,39 @@ public class DealershipAPIImpl implements DealershipAPI{
         dealershipRepo.delete(d1);
         return d1.buildDTO();
     }
-    public VehicleDTO changeStatus(int id, BusinessStatus status){
+    public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status){
 
-        return null;
+        Vehicle v1= vehicleRepo.findById(vin).get();
+        if (v1 == null){
+            return null;
+        }
+        v1.setBusinessStatus(status);
+        vehicleRepo.save(v1);
+        return v1.buildDTO();
 
     }
-//    public VehicleDTO getVehicleByLicensePlate(String licensePlate) {
-//        Optional<Vehicle> v1= vehicleRepo.findByLicensePlate(licensePlate);
-//        if (v1.isPresent()){
-//            return v1.get().buildDTO();
-//        }
-//        return null;
-//    }
+
+    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status){
+        List<Vehicle> vehicles = vehicleRepo.findByStatus(status);
+        if(vehicles.isEmpty()){
+            return null;
+        }
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle : vehicles){
+            vehicleDTOS.add(vehicle.buildDTO());
+        }
+        return vehicleDTOS;
+    }
+
+    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId){
+        List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
+        if(vehicles.isEmpty()){
+            return null;
+        }
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle : vehicles){
+            vehicleDTOS.add(vehicle.buildDTO());
+        }
+        return vehicleDTOS;
+    }
 }

@@ -4,6 +4,8 @@ import com.example.CarDealership.DTOs.BrandDTO;
 import com.example.CarDealership.DTOs.SellerDTO;
 import com.example.CarDealership.DTOs.VehicleDTO;
 import com.example.CarDealership.DTOs.ModelDTO;
+import com.example.CarDealership.Domain.Vehicle;
+import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Services.DealershipAPI;
 import com.example.CarDealership.Services.DealershipAPIImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -23,7 +26,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/vehiclesCtrl")
 public class VehicleController {
 
-    private final DealershipAPI api;
+    private final DealershipAPIImpl api;
 
     @Autowired
     public VehicleController(DealershipAPIImpl api) {
@@ -80,7 +83,7 @@ public class VehicleController {
 
 
     @DeleteMapping("/deleteBrand/{id}")
-    public HttpEntity<BrandDTO> deleteBrand(@PathVariable("id") int id) {
+    public ResponseEntity<BrandDTO> deleteBrand(@PathVariable("id") int id) {
         BrandDTO brandDTO = api.getBrandByID(id);
         if (brandDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -135,7 +138,7 @@ public class VehicleController {
     }
 
     @DeleteMapping("/deleteModel/{id}")
-    public HttpEntity<ModelDTO> deleteModel(@PathVariable("id") int id) {
+    public ResponseEntity<ModelDTO> deleteModel(@PathVariable("id") int id) {
         ModelDTO modelDTO = api.getVehicleModelByID(id);
         if (modelDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -191,7 +194,7 @@ public class VehicleController {
     }
 
     @DeleteMapping("/deleteVehicle/{id}")
-    public HttpEntity<VehicleDTO> deleteVehicle(@PathVariable("id") String id) {
+    public ResponseEntity<VehicleDTO> deleteVehicle(@PathVariable("id") String id) {
         VehicleDTO vehicleDTO = api.getVehicleByVin(id);
         if (vehicleDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -247,7 +250,7 @@ public class VehicleController {
     }
 
     @DeleteMapping("/deleteSeller/{id}")
-    public HttpEntity<SellerDTO> deleteSeller(@PathVariable("id") int id) {
+    public ResponseEntity<SellerDTO> deleteSeller(@PathVariable("id") int id) {
         SellerDTO sellerDTO = api.getSellerByID(id);
         if (sellerDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -255,4 +258,54 @@ public class VehicleController {
         sellerDTO = api.deleteSeller(id);
         return new ResponseEntity<>(sellerDTO, HttpStatus.OK);
     }
+
+    @PutMapping("/updateVehicleStatus/{vin}")
+    public ResponseEntity<VehicleDTO> updateVehicleStatus(@PathVariable("vin") String vin, BusinessStatus status) {
+        VehicleDTO vehicleDTO1 = api.getVehicleByVin(vin);
+        if (vehicleDTO1 != null) {
+            VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
+            return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/markVehicleAsSold/{vin}")
+    public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin) {
+        VehicleDTO vehicleDTO1 = api.getVehicleByVin(vin);
+        if (vehicleDTO1 != null) {
+            BusinessStatus status = BusinessStatus.SOLD;
+            VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
+            return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/vehiclesInStock")
+    public CollectionModel<VehicleDTO> getVehiclesInStock() {
+        List<VehicleDTO> vehiclesList = api.getVehiclesListByStatus(BusinessStatus.IN_STOCK);
+        Link link = linkTo(methodOn(VehicleController.class).getVehiclesInStock()).withSelfRel();
+        CollectionModel<VehicleDTO> resp = CollectionModel.of(vehiclesList, link);
+        return resp;
+    }
+
+    @GetMapping("/vehiclesSold")
+    public CollectionModel<VehicleDTO> getVehiclesSold() {
+        List <VehicleDTO> vehiclesList = api.getVehiclesListByStatus(BusinessStatus.SOLD);
+        Link link = linkTo(methodOn(VehicleController.class).getVehiclesSold()).withSelfRel();
+        CollectionModel<VehicleDTO> resp = CollectionModel.of(vehiclesList, link);
+        return resp;
+    }
+
+    @GetMapping("/vehiclesByBuyer/{buyerId}")
+    public CollectionModel<VehicleDTO> getVehiclesByBuyer(@PathVariable("buyerId") int buyerId) {
+        List<VehicleDTO> vehiclesList = api.getVehiclesByBuyerId(buyerId);
+        if(vehiclesList.isEmpty()){
+            return null;
+        }
+        Link link = linkTo(methodOn(VehicleController.class).getVehiclesByBuyer(buyerId)).withSelfRel();
+        CollectionModel<VehicleDTO> resp = CollectionModel.of(vehiclesList, link);
+        return resp;
+    }
+
+
 }

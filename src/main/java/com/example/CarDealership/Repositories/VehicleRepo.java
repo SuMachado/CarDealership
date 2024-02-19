@@ -1,7 +1,17 @@
 package com.example.CarDealership.Repositories;
 
 import com.example.CarDealership.Domain.Vehicle;
+import com.example.CarDealership.Enums.BusinessStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface VehicleRepo extends JpaRepository<Vehicle, String> {
+
+    @Query("SELECT v FROM Vehicle v WHERE v.BusinessStatus = :businessStatus")
+    List<Vehicle> findByStatus(BusinessStatus businessStatus);
+
+    @Query("SELECT v FROM Vehicle v WHERE v.buyerID = :buyerId")
+    List<Vehicle> findByBuyerId(int buyerId);
 }
