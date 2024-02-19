@@ -271,11 +271,12 @@ public class VehicleController {
     }
 
     @PutMapping("/markVehicleAsSold/{vin}")
-    public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin) {
-        VehicleDTO vehicleDTO1 = api.getVehicleByVin(vin);
-        if (vehicleDTO1 != null) {
+    public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin, int buyerID, int transactionID, double sellingPrice) {
+        VehicleDTO vehicleDTO = api.getVehicleByVin(vin);
+        if (vehicleDTO != null) {
             BusinessStatus status = BusinessStatus.SOLD;
-            VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
+            vehicleDTO = api.updateVehicleStatus(vin, status);
+            vehicleDTO = api.updateBuyerId(vin, buyerID, transactionID, sellingPrice);
             return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

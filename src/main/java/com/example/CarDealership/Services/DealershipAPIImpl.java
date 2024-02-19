@@ -196,9 +196,18 @@ public class DealershipAPIImpl implements DealershipAPI {
 
 
     @Override
-    public VehicleDTO createVehicle(VehicleDTO vehicle) {
+    public VehicleDTO createVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1 = new Vehicle();
-        v1 = v1.buildFromDTO(vehicle);
+        v1 = v1.buildFromDTO(vehicleDTO);
+        ModelDTO modelDTO = vehicleDTO.getVehicleModelDTO();
+        if(modelDTO != null) {
+            Model m = vehicleModelRepo.findById(modelDTO.getModelIdDTO()).orElse(null);
+            if(m == null) {
+                modelDTO = createVehicleModel(modelDTO);
+                m=m.buildFromDTO(modelDTO);
+            }
+            v1.setVehicleModel(m);
+        }
         v1 = vehicleRepo.save(v1);
         return v1.buildDTO();
     }
@@ -229,8 +238,17 @@ public class DealershipAPIImpl implements DealershipAPI {
     @Override
     public VehicleDTO updateVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1 = new Vehicle();
-
         v1 = v1.buildFromDTO(vehicleDTO);
+
+        ModelDTO modelDTO = vehicleDTO.getVehicleModelDTO();
+        if(modelDTO != null) {
+            Model m = vehicleModelRepo.findById(modelDTO.getModelIdDTO()).orElse(null);
+            if(m == null) {
+                modelDTO = createVehicleModel(modelDTO);
+                m=m.buildFromDTO(modelDTO);
+            }
+            v1.setVehicleModel(m);
+        }
         v1 = vehicleRepo.save(v1);
         return v1.buildDTO();
     }
@@ -253,6 +271,19 @@ public class DealershipAPIImpl implements DealershipAPI {
         vehicleRepo.save(v1);
         return v1.buildDTO();
 
+    }
+
+    public VehicleDTO updateBuyerId(String vin, int buyerId, int transactionID, double sellingPrice) {
+
+        Vehicle v1 = vehicleRepo.findById(vin).get();
+        if (v1 == null) {
+            return null;
+        }
+        v1.setBuyerID(buyerId);
+        v1.setTransactionID(transactionID);
+        v1.setSellingPrice(sellingPrice);
+        vehicleRepo.save(v1);
+        return v1.buildDTO();
     }
 
     public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status) {

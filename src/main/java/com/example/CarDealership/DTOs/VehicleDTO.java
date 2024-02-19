@@ -27,7 +27,6 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     private String colourDTO;
     private int doorsDTO;
     private int seatsDTO;
-    @Getter
     private Traction tractionDTO;
     private int yearPlateDTO;
     private int buyerIDDTO;

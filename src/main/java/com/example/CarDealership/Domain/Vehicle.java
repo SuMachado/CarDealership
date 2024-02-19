@@ -191,6 +191,7 @@ public class Vehicle {
         model1 = model1.buildFromDTO(dto.getVehicleModelDTO());
         vehicle.setVehicleModel(model1);
 
+
         vehicle.setFuelType(dto.getFuelTypeDTO());
         vehicle.setLicensePlate(dto.getLicensePlateDTO());
         vehicle.setMileage(dto.getMileageDTO());
