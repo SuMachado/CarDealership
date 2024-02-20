@@ -67,6 +67,9 @@ public class Model {
         modelDTO.setNameDTO(this.getName());
         Brand brand1=new Brand();
 
+        brand1.setBrandId(this.getBrand().getBrandId());
+        brand1.setName(this.getBrand().getName());
+
         modelDTO.setBrandDTO(brand1.buildDTO());
         return modelDTO;
     }
