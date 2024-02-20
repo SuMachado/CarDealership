@@ -25,7 +25,7 @@ public class DealershipAPIImpl implements DealershipAPI {
     @Autowired
     VehicleRepo vehicleRepo;
 
-
+//---------------------------------------------------Brand Methods-----------------------------------------------------
     @Override
     public BrandDTO createBrand(BrandDTO brandDTO) {
         Brand b1 = new Brand();
@@ -72,6 +72,8 @@ public class DealershipAPIImpl implements DealershipAPI {
         brandRepo.delete(b1);
         return b1.buildDTO();
     }
+
+    //---------------------------------------------------Model Methods-----------------------------------------------------
 
     @Override
     public ModelDTO createVehicleModel(ModelDTO model) {
@@ -147,7 +149,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return v1.buildDTO();
     }
 
-
+//---------------------------------------------------Seller Methods-----------------------------------------------------
     @Override
     public SellerDTO createSeller(SellerDTO seller) {
         Seller s1 = new Seller();
@@ -194,7 +196,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return s1.buildDTO();
     }
 
-
+//---------------------------------------------------Vehicle Methods-----------------------------------------------------
     @Override
     public VehicleDTO createVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1 = new Vehicle();
@@ -325,7 +327,7 @@ public class DealershipAPIImpl implements DealershipAPI {
 
 
 
-//CarDealership methods
+//------------------------------------------CarDealership methods---------------------------------------------
 
     @Override
     public CarDealershipDTO createDealership(CarDealershipDTO dealership) {
@@ -374,5 +376,6 @@ public class DealershipAPIImpl implements DealershipAPI {
         dealershipRepo.delete(d1);
         return d1.buildDTO();
     }
+
 
 }

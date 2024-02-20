@@ -18,7 +18,7 @@ public class Vehicle {
 
     @Id
     private String vin;
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.EAGER)
     private Model model;
     @Enumerated(EnumType.ORDINAL)
     private FuelType fuelType;
@@ -219,8 +219,7 @@ public class Vehicle {
         dto.setVinDTO(this.getVin());
 
         ModelDTO modelDTO1 = new ModelDTO();
-        Model model1 = new Model();
-        modelDTO1 = model1.buildDTO();
+        modelDTO1 = model.buildDTO();
         dto.setVehicleModelDTO(modelDTO1);
 
         dto.setFuelTypeDTO(this.getFuelType());

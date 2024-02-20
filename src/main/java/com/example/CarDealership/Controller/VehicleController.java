@@ -14,6 +14,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class VehicleController {
         CollectionModel<ModelDTO> resp = CollectionModel.of(modelList, link);
         return resp;
     }
-
+    @Transactional
     @PostMapping(value = "/createModel", consumes = "application/json", produces = "application/json")
     public HttpEntity<ModelDTO> createModel(@RequestBody ModelDTO model) {
         ModelDTO modelDTO = api.getVehicleModelByID(model.getModelIdDTO());
@@ -124,7 +125,8 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-        @PutMapping("/updateModel/{id}")
+    @Transactional
+    @PutMapping("/updateModel/{id}")
     public ResponseEntity<ModelDTO> updateModel(@PathVariable("id") int id, ModelDTO modelDTO) {
         ModelDTO modelDTO1 = api.getVehicleModelByID(id);
         if (modelDTO1 != null) {
@@ -167,6 +169,7 @@ public class VehicleController {
         return resp;
     }
 
+    @Transactional
     @PostMapping(value = "/createVehicle", consumes = "application/json", produces = "application/json")
     public HttpEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(vehicleDTO.getVinDTO());
@@ -181,6 +184,7 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @Transactional
     @PutMapping("/updateVehicle/{vin}")
     public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("vin") String id, VehicleDTO vehicleDTO) {
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(id);
@@ -262,6 +266,7 @@ public class VehicleController {
 
     @PutMapping("/updateVehicleStatus/{vin}")
     public ResponseEntity<VehicleDTO> updateVehicleStatus(@PathVariable("vin") String vin, BusinessStatus status) {
+        //BusinessStatus status1=BusinessStatus.valueOf(status);
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(vin);
         if (vehicleDTO1 != null) {
             VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
@@ -270,6 +275,7 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @Transactional
     @PutMapping("/markVehicleAsSold/{vin}")
     public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin, int buyerID, int transactionID, double sellingPrice) {
         VehicleDTO vehicleDTO = api.getVehicleByVin(vin);
