@@ -6,6 +6,7 @@ import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,10 @@ public class DealershipAPIImpl implements DealershipAPI {
     @Autowired
     VehicleRepo vehicleRepo;
 
+
+
 //---------------------------------------------------Brand Methods-----------------------------------------------------
+    @Transactional
     @Override
     public BrandDTO createBrand(BrandDTO brandDTO) {
         Brand b1 = new Brand();
@@ -57,6 +61,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return brandDTOS;
     }
 
+    @Transactional
     @Override
     public BrandDTO updateBrand(BrandDTO brandDTO) {
         Brand b1 = new Brand();
@@ -65,6 +70,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return b1.buildDTO();
     }
 
+    @Transactional
     @Override
     public BrandDTO deleteBrand(int id) {
         Brand b1 = brandRepo.findById(id).get();
@@ -75,6 +81,7 @@ public class DealershipAPIImpl implements DealershipAPI {
 
     //---------------------------------------------------Model Methods-----------------------------------------------------
 
+    @Transactional
     @Override
     public ModelDTO createVehicleModel(ModelDTO model) {
         Model v1 = new Model();
@@ -120,6 +127,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return modelDTOS;
     }
 
+    @Transactional
     @Override
     public ModelDTO updateVehicleModel(ModelDTO modelDTO) {
         Model v1 = new Model();
@@ -141,6 +149,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return v1.buildDTO();
     }
 
+    @Transactional
     @Override
     public ModelDTO deleteVehicleModel(int id) {
         Model v1 = vehicleModelRepo.findById(id).get();
@@ -150,6 +159,7 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
 //---------------------------------------------------Seller Methods-----------------------------------------------------
+    @Transactional
     @Override
     public SellerDTO createSeller(SellerDTO seller) {
         Seller s1 = new Seller();
@@ -180,6 +190,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return sellerDTOS;
     }
 
+    @Transactional
     @Override
     public SellerDTO updateSeller(SellerDTO sellerDTO) {
         Seller s1 = new Seller();
@@ -189,6 +200,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return s1.buildDTO();
     }
 
+    @Transactional
     @Override
     public SellerDTO deleteSeller(int id) {
         Seller s1 = sellerRepo.findById(id).get();
@@ -197,6 +209,7 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
 //---------------------------------------------------Vehicle Methods-----------------------------------------------------
+    @Transactional
     @Override
     public VehicleDTO createVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1 = new Vehicle();
@@ -209,6 +222,15 @@ public class DealershipAPIImpl implements DealershipAPI {
                 m=m.buildFromDTO(modelDTO);
             }
             v1.setVehicleModel(m);
+        }
+        SellerDTO sellerDTO = vehicleDTO.getSellerDTO();
+        if(sellerDTO != null) {
+            Seller s = sellerRepo.findById(sellerDTO.getSellerIdDTO()).orElse(null);
+            if(s == null&& sellerDTO.getSellerIdDTO() != 0) {
+                sellerDTO = createSeller(sellerDTO);
+                s=s.buildFromDTO(sellerDTO);
+            }
+            v1.setSeller(s);
         }
         v1 = vehicleRepo.save(v1);
         return v1.buildDTO();
@@ -237,6 +259,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return vehicleDTOS;
     }
 
+    @Transactional
     @Override
     public VehicleDTO updateVehicle(VehicleDTO vehicleDTO) {
         Vehicle v1 = new Vehicle();
@@ -255,6 +278,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return v1.buildDTO();
     }
 
+    @Transactional
     @Override
     public VehicleDTO deleteVehicle(String id) {
 
@@ -263,6 +287,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return v1.buildDTO();
     }
 
+    @Transactional
     public VehicleDTO updateVehicleStatus(String vin, BusinessStatus status) {
 
         Vehicle v1 = vehicleRepo.findById(vin).get();
@@ -275,6 +300,7 @@ public class DealershipAPIImpl implements DealershipAPI {
 
     }
 
+    @Transactional
     public VehicleDTO updateBuyerId(String vin, int buyerId, int transactionID, double sellingPrice) {
 
         Vehicle v1 = vehicleRepo.findById(vin).get();
@@ -329,6 +355,7 @@ public class DealershipAPIImpl implements DealershipAPI {
 
 //------------------------------------------CarDealership methods---------------------------------------------
 
+    @Transactional
     @Override
     public CarDealershipDTO createDealership(CarDealershipDTO dealership) {
         CarDealership d1 = new CarDealership();
@@ -361,6 +388,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return carDealershipDTOS;
     }
 
+    @Transactional
     @Override
     public CarDealershipDTO updateDealership(CarDealershipDTO dealershipDTO) {
         CarDealership d1 = new CarDealership();
@@ -369,6 +397,7 @@ public class DealershipAPIImpl implements DealershipAPI {
         return d1.buildDTO();
     }
 
+    @Transactional
     @Override
     public CarDealershipDTO deleteDealership(int id) {
 

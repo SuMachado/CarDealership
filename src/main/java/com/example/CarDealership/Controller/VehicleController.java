@@ -54,7 +54,6 @@ public class VehicleController {
         return resp;
     }
 
-    @Transactional
     @PostMapping(value = "/createBrand", consumes = "application/json", produces = "application/json")
     public HttpEntity<BrandDTO> createBrand(@RequestBody BrandDTO brand) {
         BrandDTO brandDTO = api.getBrandByID(brand.getBrandIdDTO());
@@ -69,7 +68,6 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
     @PutMapping("/updateBrand/{id}")
     public ResponseEntity<BrandDTO> updateBrand(@PathVariable("id") int id, BrandDTO brandDTO) {
         BrandDTO brandDTO1 = api.getBrandByID(id);
@@ -111,7 +109,7 @@ public class VehicleController {
         CollectionModel<ModelDTO> resp = CollectionModel.of(modelList, link);
         return resp;
     }
-    @Transactional
+
     @PostMapping(value = "/createModel", consumes = "application/json", produces = "application/json")
     public HttpEntity<ModelDTO> createModel(@RequestBody ModelDTO model) {
         ModelDTO modelDTO = api.getVehicleModelByID(model.getModelIdDTO());
@@ -126,7 +124,6 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
     @PutMapping("/updateModel/{id}")
     public ResponseEntity<ModelDTO> updateModel(@PathVariable("id") int id, ModelDTO modelDTO) {
         ModelDTO modelDTO1 = api.getVehicleModelByID(id);
@@ -170,7 +167,6 @@ public class VehicleController {
         return resp;
     }
 
-    @Transactional
     @PostMapping(value = "/createVehicle", consumes = "application/json", produces = "application/json")
     public HttpEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(vehicleDTO.getVinDTO());
@@ -185,7 +181,6 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
     @PutMapping("/updateVehicle/{vin}")
     public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("vin") String id, VehicleDTO vehicleDTO) {
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(id);
@@ -227,7 +222,6 @@ public class VehicleController {
         return resp;
     }
 
-    @Transactional
     @PostMapping(value = "/createSeller", consumes = "application/json", produces = "application/json")
     public HttpEntity<SellerDTO> createSeller(@RequestBody SellerDTO seller) {
         SellerDTO SellerDTO = api.getSellerByID(seller.getSellerIdDTO());
@@ -242,7 +236,7 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
+
     @PutMapping("/updateSeller/{id}")
     public ResponseEntity<SellerDTO> updateSeller(@PathVariable("id") int id, SellerDTO seller) {
         SellerDTO sellerDTO = api.getSellerByID(id);
@@ -266,7 +260,7 @@ public class VehicleController {
         return new ResponseEntity<>(sellerDTO, HttpStatus.OK);
     }
 
-    @Transactional
+
     @PutMapping("/updateVehicleStatus/{vin}")
     public ResponseEntity<VehicleDTO> updateVehicleStatus(@PathVariable("vin") String vin, BusinessStatus status) {
         //BusinessStatus status1=BusinessStatus.valueOf(status);
@@ -278,7 +272,7 @@ public class VehicleController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
+
     @PutMapping("/markVehicleAsSold/{vin}")
     public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin, int buyerID, int transactionID, double sellingPrice) {
         VehicleDTO vehicleDTO = api.getVehicleByVin(vin);

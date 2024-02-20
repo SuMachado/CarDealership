@@ -229,8 +229,7 @@ public class Vehicle {
         dto.setSellingPriceDTO(this.getSellingPrice());
 
         SellerDTO sellerDTO1 = new SellerDTO();
-        Seller seller1 = new Seller();
-        sellerDTO1=seller1.buildDTO();
+        sellerDTO1=seller.buildDTO();
         dto.setSellerDTO(sellerDTO1);
 
         dto.setVehicleTypeDTO(this.getVehicleType());
