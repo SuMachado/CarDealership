@@ -301,7 +301,7 @@ public class DealershipAPIImpl implements DealershipAPI {
     public List<VehicleDTO> getVehiclesByBuyerId(int buyerId) {
         List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
         if (vehicles.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
         List<VehicleDTO> vehicleDTOS = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
@@ -309,6 +309,20 @@ public class DealershipAPIImpl implements DealershipAPI {
         }
         return vehicleDTOS;
     }
+
+    public List<VehicleDTO>getVehiclesByBrandID(int brandID) {
+        List<Vehicle> vehicles = vehicleRepo.findByBrandId(brandID);
+        if (vehicles.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            vehicleDTOS.add(vehicle.buildDTO());
+        }
+        return vehicleDTOS;
+    }
+
+
 
 
 //CarDealership methods
@@ -360,4 +374,5 @@ public class DealershipAPIImpl implements DealershipAPI {
         dealershipRepo.delete(d1);
         return d1.buildDTO();
     }
+
 }

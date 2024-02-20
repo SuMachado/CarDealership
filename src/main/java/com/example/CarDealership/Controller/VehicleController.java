@@ -309,5 +309,15 @@ public class VehicleController {
         return resp;
     }
 
+    @GetMapping("/vehiclesByBrand/{brandId}")
+    public CollectionModel<VehicleDTO> getVehiclesByBrand(@PathVariable("brandId") int brandId) {
+        List<VehicleDTO> vehiclesList = api.getVehiclesByBrandID(brandId);
+        if(vehiclesList.isEmpty()){
+            return null;
+        }
+        Link link = linkTo(methodOn(VehicleController.class).getVehiclesByBrand(brandId)).withSelfRel();
+        CollectionModel<VehicleDTO> resp = CollectionModel.of(vehiclesList, link);
+        return resp;
+    }
 
 }
