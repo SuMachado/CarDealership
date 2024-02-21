@@ -241,10 +241,10 @@ public class DealershipAPIImpl implements DealershipAPI {
         ModelDTO modelDTO = vehicleDTO.getVehicleModelDTO();
         if(modelDTO != null) {
             Model m = vehicleModelRepo.findById(modelDTO.getModelIdDTO()).orElse(null);
-            if(m == null) {
-                modelDTO = createVehicleModel(modelDTO);
-                m=m.buildFromDTO(modelDTO);
-            }
+//            if(m == null) {
+//                modelDTO = createVehicleModel(modelDTO);
+//                m=m.buildFromDTO(modelDTO);
+//            }
             v1.setVehicleModel(m);
         }
         v1 = vehicleRepo.save(v1);

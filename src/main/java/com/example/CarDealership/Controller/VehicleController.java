@@ -56,7 +56,7 @@ public class VehicleController {
         int _size=size.orElse(10);
         String _sort=sort.orElse("brandId");
 
-        Page<BrandDTO> brandsList = api.brandsList(page.orElse(1),size.orElse(10),_sort);
+        Page<BrandDTO> brandsList = api.brandsList(_page,_size,_sort);
         brandsList=brandsList.map((BrandDTO b) -> b.add(linkTo(methodOn(VehicleController.class).getBrandByID(b.getBrandIdDTO())).withSelfRel()));
         Link link = linkTo(methodOn(VehicleController.class).getBrands( page, size, sort)).withSelfRel();
         List <Link> links = new ArrayList<>();
@@ -128,7 +128,7 @@ public class VehicleController {
         int _size=size.orElse(10);
         String _sort=sort.orElse("modelId");
 
-        Page<ModelDTO> modelsList = api.vehicleModelsList(page.orElse(1),size.orElse(10),_sort);
+        Page<ModelDTO> modelsList = api.vehicleModelsList(_page,_size,_sort);
         modelsList=modelsList.map((ModelDTO b) -> b.add(linkTo(methodOn(VehicleController.class).getModelByID(b.getModelIdDTO())).withSelfRel()));
 
         Link link = linkTo(methodOn(VehicleController.class).getModels(page, size, sort)).withSelfRel();
@@ -162,7 +162,7 @@ public class VehicleController {
     }
 
     @PutMapping("/updateModel/{id}")
-    public ResponseEntity<ModelDTO> updateModel(@PathVariable("id") int id, ModelDTO modelDTO) {
+    public ResponseEntity<ModelDTO> updateModel(@PathVariable("id") int id,@RequestBody ModelDTO modelDTO) {
         ModelDTO modelDTO1 = api.getVehicleModelByID(id);
         if (modelDTO1 != null) {
             if (modelDTO.getModelIdDTO() != id) {
@@ -235,10 +235,10 @@ public class VehicleController {
     }
 
     @PutMapping("/updateVehicle/{vin}")
-    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("vin") String id, VehicleDTO vehicleDTO) {
+    public ResponseEntity<VehicleDTO> updateVehicle(@PathVariable("vin") String id,@RequestBody VehicleDTO vehicleDTO) {
         VehicleDTO vehicleDTO1 = api.getVehicleByVin(id);
         if (vehicleDTO1 != null) {
-            if (vehicleDTO.getVinDTO() != id) {
+            if (!vehicleDTO.getVinDTO().equals(id)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             VehicleDTO v = api.updateVehicle(vehicleDTO);
