@@ -5,6 +5,9 @@ import com.example.CarDealership.Domain.*;
 import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,16 +52,8 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
     @Override
-    public List<BrandDTO> brandsList() {
-        List<Brand> brands = brandRepo.findAll();
-        if (brands.isEmpty()) {
-            return new ArrayList<>();
-        }
-        List<BrandDTO> brandDTOS = new ArrayList<>();
-        for (Brand brand : brands) {
-            brandDTOS.add(brand.buildDTO());
-        }
-        return brandDTOS;
+    public Page<BrandDTO> brandsList(int page, int size, String sort) {
+        return brandRepo.findAll(PageRequest.of(page, size, Sort.by(sort))).map(Brand::buildDTO);
     }
 
     @Transactional
@@ -115,16 +110,8 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
     @Override
-    public List<ModelDTO> vehicleModelsList() {
-        List<Model> models = vehicleModelRepo.findAll();
-        if (models.isEmpty()) {
-            return new ArrayList<>();
-        }
-        List<ModelDTO> modelDTOS = new ArrayList<>();
-        for (Model model : models) {
-            modelDTOS.add(model.buildDTO());
-        }
-        return modelDTOS;
+    public Page<ModelDTO> vehicleModelsList(int page, int size, String sort) {
+        return vehicleModelRepo.findAll(PageRequest.of(page, size, Sort.by(sort))).map(Model::buildDTO);
     }
 
     @Transactional
@@ -178,16 +165,8 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
     @Override
-    public List<SellerDTO> sellersList() {
-        List<Seller> sellers = sellerRepo.findAll();
-        if (sellers.isEmpty()) {
-            return null;
-        }
-        List<SellerDTO> sellerDTOS = new ArrayList<>();
-        for (Seller seller : sellers) {
-            sellerDTOS.add(seller.buildDTO());
-        }
-        return sellerDTOS;
+    public Page<SellerDTO> sellersList(int page, int size, String sort) {
+        return sellerRepo.findAll(PageRequest.of(page, size, Sort.by(sort))).map(Seller::buildDTO);
     }
 
     @Transactional
@@ -219,7 +198,8 @@ public class DealershipAPIImpl implements DealershipAPI {
             Model m = vehicleModelRepo.findById(modelDTO.getModelIdDTO()).orElse(null);
             if(m == null) {
                 modelDTO = createVehicleModel(modelDTO);
-                m=m.buildFromDTO(modelDTO);
+                Model m1 = new Model();
+                m=m1.buildFromDTO(modelDTO);
             }
             v1.setVehicleModel(m);
         }
@@ -228,7 +208,8 @@ public class DealershipAPIImpl implements DealershipAPI {
             Seller s = sellerRepo.findById(sellerDTO.getSellerIdDTO()).orElse(null);
             if(s == null&& sellerDTO.getSellerIdDTO() != 0) {
                 sellerDTO = createSeller(sellerDTO);
-                s=s.buildFromDTO(sellerDTO);
+                Seller s1 = new Seller();
+                s=s1.buildFromDTO(sellerDTO);
             }
             v1.setSeller(s);
         }
@@ -247,16 +228,8 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
     @Override
-    public List<VehicleDTO> vehiclesList() {
-        List<Vehicle> vehicles = vehicleRepo.findAll();
-        if (vehicles.isEmpty()) {
-            return null;
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) {
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
+    public Page<VehicleDTO> vehiclesList(int page, int size, String sort) {
+        return vehicleRepo.findAll(PageRequest.of(page,size, Sort.by(sort))).map(Vehicle::buildDTO);
     }
 
     @Transactional
@@ -314,43 +287,20 @@ public class DealershipAPIImpl implements DealershipAPI {
         return v1.buildDTO();
     }
 
-    public List<VehicleDTO> getVehiclesListByStatus(BusinessStatus status) {
-        List<Vehicle> vehicles = vehicleRepo.findByStatus(status);
-        if (vehicles.isEmpty()) {
-            return null;
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) {
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
+
+    //--------------------------------------Vehicles listing methods---------------------------------------------
+    public Page<VehicleDTO> getVehiclesListByStatus(BusinessStatus status, int page, int size, String sort) {
+        return vehicleRepo.findByStatus(status, PageRequest.of(page, size, Sort.by(sort))).map(Vehicle::buildDTO);
     }
 
-    public List<VehicleDTO> getVehiclesByBuyerId(int buyerId) {
-        List<Vehicle> vehicles = vehicleRepo.findByBuyerId(buyerId);
-        if (vehicles.isEmpty()) {
-            return new ArrayList<>();
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) {
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
-    }
-
-    public List<VehicleDTO>getVehiclesByBrandID(int brandID) {
-        List<Vehicle> vehicles = vehicleRepo.findByBrandId(brandID);
-        if (vehicles.isEmpty()) {
-            return new ArrayList<>();
-        }
-        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) {
-            vehicleDTOS.add(vehicle.buildDTO());
-        }
-        return vehicleDTOS;
+    public Page<VehicleDTO> getVehiclesByBuyerId(int buyerId, int page, int size, String sort) {
+        return vehicleRepo.findByBuyerId(buyerId, PageRequest.of(page, size, Sort.by(sort))).map(Vehicle::buildDTO);
     }
 
 
+    public Page<VehicleDTO>getVehiclesByBrandID(int brandID, int page, int size, String sort) {
+        return vehicleRepo.findByBrandId(brandID, PageRequest.of(page, size, Sort.by(sort))).map(Vehicle::buildDTO);
+    }
 
 
 //------------------------------------------CarDealership methods---------------------------------------------
@@ -375,17 +325,8 @@ public class DealershipAPIImpl implements DealershipAPI {
     }
 
     @Override
-    public List<CarDealershipDTO> dealershipList() {
-
-        List<CarDealership> carDealerships = dealershipRepo.findAll();
-        if (carDealerships.isEmpty()) {
-            return null;
-        }
-        List<CarDealershipDTO> carDealershipDTOS = new ArrayList<>();
-        for (CarDealership carDealership : carDealerships) {
-            carDealershipDTOS.add(carDealership.buildDTO());
-        }
-        return carDealershipDTOS;
+    public Page<CarDealershipDTO> dealershipList(int page, int size, String sort) {
+        return dealershipRepo.findAll(PageRequest.of(page, size, Sort.by(sort))).map(CarDealership::buildDTO);
     }
 
     @Transactional
