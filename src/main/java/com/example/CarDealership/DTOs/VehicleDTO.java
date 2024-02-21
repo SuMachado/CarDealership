@@ -1,9 +1,6 @@
 package com.example.CarDealership.DTOs;
 
-import com.example.CarDealership.Enums.BusinessStatus;
-import com.example.CarDealership.Enums.FuelType;
-import com.example.CarDealership.Enums.Traction;
-import com.example.CarDealership.Enums.VehicleType;
+import com.example.CarDealership.Enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +28,7 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
     private int yearPlateDTO;
     private int buyerIDDTO;
     private int transactionIDDTO;
-
+    private State stateDTO;
 
     public String getVinDTO() {
         return vinDTO;
@@ -99,6 +96,14 @@ public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
     public int getTransactionIDDTO() {
         return transactionIDDTO;
+    }
+
+    public State getStateDTO() {
+        return stateDTO;
+    }
+
+    public void setStateDTO(State stateDTO) {
+        this.stateDTO = stateDTO;
     }
 
     public void setBuyerIDDTO(int buyerIDDTO) {

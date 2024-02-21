@@ -3,10 +3,7 @@ package com.example.CarDealership.Domain;
 import com.example.CarDealership.DTOs.SellerDTO;
 import com.example.CarDealership.DTOs.VehicleDTO;
 import com.example.CarDealership.DTOs.ModelDTO;
-import com.example.CarDealership.Enums.BusinessStatus;
-import com.example.CarDealership.Enums.FuelType;
-import com.example.CarDealership.Enums.Traction;
-import com.example.CarDealership.Enums.VehicleType;
+import com.example.CarDealership.Enums.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -38,7 +35,8 @@ public class Vehicle {
     @Enumerated(EnumType.ORDINAL)
     private Traction traction;
     private int yearPlate;
-
+    @Enumerated(EnumType.ORDINAL)
+    private State state;
     private int buyerID;
     private int transactionID;
 
@@ -113,6 +111,14 @@ public class Vehicle {
 
     public int getTransactionID() {
         return transactionID;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public void setYearPlate(int yearPlate) {
@@ -191,7 +197,6 @@ public class Vehicle {
         model1 = model1.buildFromDTO(dto.getVehicleModelDTO());
         vehicle.setVehicleModel(model1);
 
-
         vehicle.setFuelType(dto.getFuelTypeDTO());
         vehicle.setLicensePlate(dto.getLicensePlateDTO());
         vehicle.setMileage(dto.getMileageDTO());
@@ -211,6 +216,8 @@ public class Vehicle {
         vehicle.setYearPlate(dto.getYearPlateDTO());
         vehicle.setBuyerID(dto.getBuyerIDDTO());
         vehicle.setTransactionID(dto.getTransactionIDDTO());
+
+        vehicle.setState(dto.getStateDTO());
         return vehicle;
     }
 
@@ -221,6 +228,7 @@ public class Vehicle {
         ModelDTO modelDTO1 = new ModelDTO();
         modelDTO1 = model.buildDTO();
         dto.setVehicleModelDTO(modelDTO1);
+
 
         dto.setFuelTypeDTO(this.getFuelType());
         dto.setLicensePlateDTO(this.getLicensePlate());
@@ -241,6 +249,9 @@ public class Vehicle {
         dto.setYearPlateDTO(this.getYearPlate());
         dto.setBuyerIDDTO(this.getBuyerID());
         dto.setTransactionIDDTO(this.getTransactionID());
+
+
+        dto.setStateDTO(this.getState());
         return dto;
     }
 }
