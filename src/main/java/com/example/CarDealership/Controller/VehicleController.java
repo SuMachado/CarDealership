@@ -1,9 +1,6 @@
 package com.example.CarDealership.Controller;
 
-import com.example.CarDealership.DTOs.BrandDTO;
-import com.example.CarDealership.DTOs.SellerDTO;
-import com.example.CarDealership.DTOs.VehicleDTO;
-import com.example.CarDealership.DTOs.ModelDTO;
+import com.example.CarDealership.DTOs.*;
 import com.example.CarDealership.Enums.BusinessStatus;
 import com.example.CarDealership.Services.DealershipAPIImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -330,15 +327,20 @@ public class VehicleController {
     }
 
     @PutMapping("/markVehicleAsSold/{vin}")
-    public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin, int buyerID, int transactionID, double sellingPrice) {
-        BusinessStatus status = BusinessStatus.SOLD;
+    public ResponseEntity<VehicleDTO> markVehicleAsSold(@PathVariable("vin") String vin, @RequestBody MarkSoldDTO markSoldDTO) {
+        {
+            BusinessStatus status = BusinessStatus.SOLD;
+            int buyerId = markSoldDTO.getBuyerId();
+            int transactionId = markSoldDTO.transactionID;
+            double sellingPrice = markSoldDTO.getSellingPrice();
 
-        VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
-        if (vehicleDTO != null) {
-            vehicleDTO = api.updateBuyerId(vin, buyerID, transactionID, sellingPrice);
-            return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+            VehicleDTO vehicleDTO = api.updateVehicleStatus(vin, status);
+            if (vehicleDTO != null) {
+                vehicleDTO = api.updateBuyerId(vin, buyerId, transactionId, sellingPrice);
+                return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     //falta "arrumar" daqui para baixo########################################
