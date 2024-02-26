@@ -38,8 +38,8 @@ public class Brand {
     public Brand buildFromDTO(BrandDTO brandDTO) {
         Brand brand = new Brand();
         if (brandDTO != null) {
-            brand.setBrandId(brandDTO.getBrandIdDTO());
-            brand.setName(brandDTO.getNameDTO());
+            brand.setBrandId(brandDTO.getBrandId());
+            brand.setName(brandDTO.getName());
 
         }
         return brand;
@@ -47,8 +47,8 @@ public class Brand {
 
     public BrandDTO buildDTO() {
         BrandDTO brandDTO = new BrandDTO();
-        brandDTO.setBrandIdDTO(this.getBrandId());
-        brandDTO.setNameDTO(this.getName());
+        brandDTO.setBrandId(this.getBrandId());
+        brandDTO.setName(this.getName());
         return brandDTO;
     }
 

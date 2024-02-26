@@ -53,24 +53,24 @@ public class Model {
 
     public Model buildFromDTO(ModelDTO modelDTO) {
         Model model = new Model();
-        model.setModelId(modelDTO.getModelIdDTO());
-        model.setName(modelDTO.getNameDTO());
+        model.setModelId(modelDTO.getModelId());
+        model.setName(modelDTO.getName());
         Brand brand1=new Brand();
 
-        model.setBrand(brand1.buildFromDTO(modelDTO.getBrandDTO()));
+        model.setBrand(brand1.buildFromDTO(modelDTO.getBrand()));
         return model;}
 
 
     public ModelDTO buildDTO() {
         ModelDTO modelDTO = new ModelDTO();
-        modelDTO.setModelIdDTO(this.getModelId());
-        modelDTO.setNameDTO(this.getName());
+        modelDTO.setModelId(this.getModelId());
+        modelDTO.setName(this.getName());
         Brand brand1=new Brand();
 
         brand1.setBrandId(this.getBrand().getBrandId());
         brand1.setName(this.getBrand().getName());
 
-        modelDTO.setBrandDTO(brand1.buildDTO());
+        modelDTO.setBrand(brand1.buildDTO());
         return modelDTO;
     }
 }

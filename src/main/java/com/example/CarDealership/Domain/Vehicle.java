@@ -191,67 +191,67 @@ public class Vehicle {
 
     public Vehicle buildFromDTO(VehicleDTO dto){
         Vehicle vehicle = new Vehicle();
-        vehicle.setVin(dto.getVinDTO());
+        vehicle.setVin(dto.getVin());
 
         Model model1 = new Model();
-        model1 = model1.buildFromDTO(dto.getVehicleModelDTO());
+        model1 = model1.buildFromDTO(dto.getVehicleModel());
         vehicle.setVehicleModel(model1);
 
-        vehicle.setFuelType(dto.getFuelTypeDTO());
-        vehicle.setLicensePlate(dto.getLicensePlateDTO());
-        vehicle.setMileage(dto.getMileageDTO());
-        vehicle.setPurchasePrice(dto.getPurchasePriceDTO());
-        vehicle.setSellingPrice(dto.getSellingPriceDTO());
+        vehicle.setFuelType(dto.getFuelType());
+        vehicle.setLicensePlate(dto.getLicensePlate());
+        vehicle.setMileage(dto.getMileage());
+        vehicle.setPurchasePrice(dto.getPurchasePrice());
+        vehicle.setSellingPrice(dto.getSellingPrice());
 
         Seller seller1 = new Seller();
-        seller1 = seller1.buildFromDTO(dto.getSellerDTO());
+        seller1 = seller1.buildFromDTO(dto.getSeller());
         vehicle.setSeller(seller1);
 
-        vehicle.setVehicleType(dto.getVehicleTypeDTO());
-        vehicle.setBusinessStatus(dto.getBusinessStatusDTO());
-        vehicle.setColour(dto.getColourDTO());
-        vehicle.setDoors(dto.getDoorsDTO());
-        vehicle.setSeats(dto.getSeatsDTO());
-        vehicle.setTraction(dto.getTractionDTO());
-        vehicle.setYearPlate(dto.getYearPlateDTO());
-        vehicle.setBuyerID(dto.getBuyerIDDTO());
-        vehicle.setTransactionID(dto.getTransactionIDDTO());
+        vehicle.setVehicleType(dto.getVehicleType());
+        vehicle.setBusinessStatus(dto.getBusinessStatus());
+        vehicle.setColour(dto.getColour());
+        vehicle.setDoors(dto.getDoors());
+        vehicle.setSeats(dto.getSeats());
+        vehicle.setTraction(dto.getTraction());
+        vehicle.setYearPlate(dto.getYearPlate());
+        vehicle.setBuyerID(dto.getBuyerID());
+        vehicle.setTransactionID(dto.getTransactionID());
 
-        vehicle.setState(dto.getStateDTO());
+        vehicle.setState(dto.getState());
         return vehicle;
     }
 
     public VehicleDTO buildDTO(){
         VehicleDTO dto = new VehicleDTO();
-        dto.setVinDTO(this.getVin());
+        dto.setVin(this.getVin());
 
         ModelDTO modelDTO1 = new ModelDTO();
         modelDTO1 = model.buildDTO();
-        dto.setVehicleModelDTO(modelDTO1);
+        dto.setVehicleModel(modelDTO1);
 
 
-        dto.setFuelTypeDTO(this.getFuelType());
-        dto.setLicensePlateDTO(this.getLicensePlate());
-        dto.setMileageDTO(this.getMileage());
-        dto.setPurchasePriceDTO(this.getPurchasePrice());
-        dto.setSellingPriceDTO(this.getSellingPrice());
+        dto.setFuelType(this.getFuelType());
+        dto.setLicensePlate(this.getLicensePlate());
+        dto.setMileage(this.getMileage());
+        dto.setPurchasePrice(this.getPurchasePrice());
+        dto.setSellingPrice(this.getSellingPrice());
 
         SellerDTO sellerDTO1 = new SellerDTO();
         sellerDTO1=seller.buildDTO();
-        dto.setSellerDTO(sellerDTO1);
+        dto.setSeller(sellerDTO1);
 
-        dto.setVehicleTypeDTO(this.getVehicleType());
-        dto.setBusinessStatusDTO(this.getBusinessStatus());
-        dto.setColourDTO(this.getColour());
-        dto.setDoorsDTO(this.getDoors());
-        dto.setSeatsDTO(this.getSeats());
-        dto.setTractionDTO(this.getTraction());
-        dto.setYearPlateDTO(this.getYearPlate());
-        dto.setBuyerIDDTO(this.getBuyerID());
-        dto.setTransactionIDDTO(this.getTransactionID());
+        dto.setVehicleType(this.getVehicleType());
+        dto.setBusinessStatus(this.getBusinessStatus());
+        dto.setColour(this.getColour());
+        dto.setDoors(this.getDoors());
+        dto.setSeats(this.getSeats());
+        dto.setTraction(this.getTraction());
+        dto.setYearPlate(this.getYearPlate());
+        dto.setBuyerID(this.getBuyerID());
+        dto.setTransactionID(this.getTransactionID());
 
 
-        dto.setStateDTO(this.getState());
+        dto.setState(this.getState());
         return dto;
     }
 }

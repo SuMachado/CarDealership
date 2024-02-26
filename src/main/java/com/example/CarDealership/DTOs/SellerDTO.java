@@ -9,63 +9,63 @@ import org.springframework.hateoas.RepresentationModel;
 @AllArgsConstructor
 public class SellerDTO  extends RepresentationModel<SellerDTO> {
 
-    private int sellerIdDTO;
+    private int sellerId;
 
-    private String nameDTO;
+    private String name;
 
-    private String addressDTO;
+    private String address;
 
-    private String taxNumberDTO;
+    private String taxNumber;
 
-    private String phoneNumberDTO;
+    private String phoneNumber;
 
-    private String emailDTO;
+    private String email;
 
-    public int getSellerIdDTO() {
-        return sellerIdDTO;
+    public int getSellerId() {
+        return sellerId;
     }
 
-    public String getNameDTO() {
-        return nameDTO;
+    public String getName() {
+        return name;
     }
 
-    public String getAddressDTO() {
-        return addressDTO;
+    public String getAddress() {
+        return address;
     }
 
-    public String getTaxNumberDTO() {
-        return taxNumberDTO;
+    public String getTaxNumber() {
+        return taxNumber;
     }
 
-    public String getPhoneNumberDTO() {
-        return phoneNumberDTO;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getEmailDTO() {
-        return emailDTO;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSellerIdDTO(int sellerIdDTO) {
-        this.sellerIdDTO = sellerIdDTO;
+    public void setSellerId(int sellerId) {
+        this.sellerId = sellerId;
     }
 
-    public void setNameDTO(String nameDTO) {
-        this.nameDTO = nameDTO;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setAddressDTO(String addressDTO) {
-        this.addressDTO = addressDTO;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setTaxNumberDTO(String taxNumberDTO) {
-        this.taxNumberDTO = taxNumberDTO;
+    public void setTaxNumber(String taxNumber) {
+        this.taxNumber = taxNumber;
     }
 
-    public void setPhoneNumberDTO(String phoneNumberDTO) {
-        this.phoneNumberDTO = phoneNumberDTO;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setEmailDTO(String emailDTO) {
-        this.emailDTO = emailDTO;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

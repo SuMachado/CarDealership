@@ -23,7 +23,6 @@ public class CarDealership {
 
     private String address;
     private String phoneNumber;
-    private double finalBalance;
 
 
     @OneToMany
@@ -67,9 +66,6 @@ public class CarDealership {
         return phoneNumber;
     }
 
-    public double getFinalBalance() {
-        return finalBalance;
-    }
 
     public List<Vehicle> getVehicles() {
         return vehicles;
@@ -91,9 +87,6 @@ public class CarDealership {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setFinalBalance(double finalBalance) {
-        this.finalBalance = finalBalance;
-    }
 
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
@@ -106,7 +99,6 @@ public class CarDealership {
         dto.setNameDTO(this.getName());
         dto.setAddressDTO(this.getAddress());
         dto.setPhoneNumberDTO(this.getPhoneNumber());
-        dto.setFinalBalanceDTO(this.getFinalBalance());
 
         List <Vehicle>vehiclesList = this.getVehicles();
         List <VehicleDTO>vehiclesDTOList = new ArrayList<>();
@@ -124,7 +116,6 @@ public class CarDealership {
         carDealership.setName(dto.getNameDTO());
         carDealership.setAddress(dto.getAddressDTO());
         carDealership.setPhoneNumber(dto.getPhoneNumberDTO());
-        carDealership.setFinalBalance(dto.getFinalBalanceDTO());
 
         Vehicle vehicle = new Vehicle();
         List <VehicleDTO> vehiclesDTOList = dto.getVehicleDTOS();

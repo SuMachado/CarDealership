@@ -79,24 +79,24 @@ public class Seller {
     public Seller buildFromDTO( SellerDTO dto) {
         Seller seller = new Seller();
 
-        seller.setSellerId(dto.getSellerIdDTO());
-        seller.setName(dto.getNameDTO());
-        seller.setAddress(dto.getAddressDTO());
-        seller.setTaxNumber(dto.getTaxNumberDTO());
-        seller.setPhoneNumber(dto.getPhoneNumberDTO());
-        seller.setEmail(dto.getEmailDTO());
+        seller.setSellerId(dto.getSellerId());
+        seller.setName(dto.getName());
+        seller.setAddress(dto.getAddress());
+        seller.setTaxNumber(dto.getTaxNumber());
+        seller.setPhoneNumber(dto.getPhoneNumber());
+        seller.setEmail(dto.getEmail());
 
         return seller;
     }
 
     public SellerDTO buildDTO() {
         SellerDTO sellerDTO= new SellerDTO();
-        sellerDTO.setSellerIdDTO(this.getSellerId());
-        sellerDTO.setNameDTO(this.getName());
-        sellerDTO.setAddressDTO(this.getAddress());
-        sellerDTO.setTaxNumberDTO(this.getTaxNumber());
-        sellerDTO.setPhoneNumberDTO(this.getPhoneNumber());
-        sellerDTO.setEmailDTO(this.getEmail());
+        sellerDTO.setSellerId(this.getSellerId());
+        sellerDTO.setName(this.getName());
+        sellerDTO.setAddress(this.getAddress());
+        sellerDTO.setTaxNumber(this.getTaxNumber());
+        sellerDTO.setPhoneNumber(this.getPhoneNumber());
+        sellerDTO.setEmail(this.getEmail());
 
         return sellerDTO;
     }

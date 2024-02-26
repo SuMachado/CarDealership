@@ -11,7 +11,7 @@ public interface DealershipAPI {
     BrandDTO createBrand(BrandDTO brand);
     BrandDTO getBrandByID(int id);
     Page<BrandDTO> brandsList(int page, int size, String sort);
-    BrandDTO updateBrand(BrandDTO branddto);
+    BrandDTO updateBrand(int id, BrandDTO branddto);
     BrandDTO deleteBrand(int id);
 
 
@@ -19,22 +19,23 @@ public interface DealershipAPI {
     ModelDTO createVehicleModel(ModelDTO model);
     ModelDTO getVehicleModelByID(int id);
     Page<ModelDTO> vehicleModelsList(int page, int size, String sort);
-    ModelDTO updateVehicleModel(ModelDTO modelDTO);
+    ModelDTO updateVehicleModel(int id, ModelDTO modelDTO);
     ModelDTO deleteVehicleModel(int id);
-
-
-    VehicleDTO createVehicle(VehicleDTO vehicle);
-    VehicleDTO getVehicleByVin(String id);
-    Page<VehicleDTO>vehiclesList(int page, int size, String sort);
-    VehicleDTO updateVehicle(VehicleDTO vehicleDTO);
-    VehicleDTO deleteVehicle(String id);
 
 
     SellerDTO createSeller(SellerDTO seller);
     SellerDTO getSellerByID(int id);
     Page<SellerDTO> sellersList(int page, int size, String sort);
-    SellerDTO updateSeller(SellerDTO sellerDTO);
+    SellerDTO updateSeller(int id, SellerDTO sellerDTO);
     SellerDTO deleteSeller(int id);
+
+
+    VehicleDTO createVehicle(VehicleDTO vehicle);
+    VehicleDTO getVehicleByVin(String id);
+    Page<VehicleDTO>vehiclesList(int page, int size, String sort);
+    VehicleDTO updateVehicle(String vin,VehicleDTO vehicleDTO);
+    VehicleDTO deleteVehicle(String id);
+
 
 
     CarDealershipDTO createDealership(CarDealershipDTO dealership);

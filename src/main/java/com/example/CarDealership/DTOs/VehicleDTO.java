@@ -2,7 +2,6 @@ package com.example.CarDealership.DTOs;
 
 import com.example.CarDealership.Enums.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -11,166 +10,166 @@ import org.springframework.hateoas.RepresentationModel;
 public class VehicleDTO extends RepresentationModel<VehicleDTO> {
 
 
-    private String vinDTO;
-    private ModelDTO modelDTO;
-    private FuelType fuelTypeDTO;
-    private String licensePlateDTO;
-    private double mileageDTO;
-    private double purchasePriceDTO;
-    private double sellingPriceDTO;
-    private SellerDTO sellerDTO;
-    private VehicleType vehicleTypeDTO;
-    private BusinessStatus businessStatusDTO;
-    private String colourDTO;
-    private int doorsDTO;
-    private int seatsDTO;
-    private Traction tractionDTO;
-    private int yearPlateDTO;
-    private int buyerIDDTO;
-    private int transactionIDDTO;
-    private State stateDTO;
+    private String vin;
+    private ModelDTO model;
+    private FuelType fuelType;
+    private String licensePlate;
+    private double mileage;
+    private double purchasePrice;
+    private double sellingPrice;
+    private SellerDTO seller;
+    private VehicleType vehicleType;
+    private BusinessStatus businessStatus;
+    private String colour;
+    private int doors;
+    private int seats;
+    private Traction traction;
+    private int yearPlate;
+    private int buyerID;
+    private int transactionID;
+    private State state;
 
-    public String getVinDTO() {
-        return vinDTO;
+    public String getVin() {
+        return vin;
     }
 
-    public ModelDTO getVehicleModelDTO() {
-        return modelDTO;
+    public ModelDTO getVehicleModel() {
+        return model;
     }
 
-    public FuelType getFuelTypeDTO() {
-        return fuelTypeDTO;
+    public FuelType getFuelType() {
+        return fuelType;
     }
 
-    public String getLicensePlateDTO() {
-        return licensePlateDTO;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public double getMileageDTO() {
-        return mileageDTO;
+    public double getMileage() {
+        return mileage;
     }
 
-    public double getPurchasePriceDTO() {
-        return purchasePriceDTO;
+    public double getPurchasePrice() {
+        return purchasePrice;
     }
 
-    public double getSellingPriceDTO() {
-        return sellingPriceDTO;
+    public double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public SellerDTO getSellerDTO() {
-        return sellerDTO;
+    public SellerDTO getSeller() {
+        return seller;
     }
 
-    public VehicleType getVehicleTypeDTO() {
-        return vehicleTypeDTO;
+    public VehicleType getVehicleType() {
+        return vehicleType;
     }
 
-    public BusinessStatus getBusinessStatusDTO() {
-        return businessStatusDTO;
+    public BusinessStatus getBusinessStatus() {
+        return businessStatus;
     }
 
-    public String getColourDTO() {
-        return colourDTO;
+    public String getColour() {
+        return colour;
     }
 
-    public int getDoorsDTO() {
-        return doorsDTO;
+    public int getDoors() {
+        return doors;
     }
 
-    public int getSeatsDTO() {
-        return seatsDTO;
+    public int getSeats() {
+        return seats;
     }
 
-    public Traction getTractionDTO() {
-        return tractionDTO;
+    public Traction getTraction() {
+        return traction;
     }
 
-    public int getYearPlateDTO() {
-        return yearPlateDTO;
+    public int getYearPlate() {
+        return yearPlate;
     }
 
-    public int getBuyerIDDTO() {
-        return buyerIDDTO;
+    public int getBuyerID() {
+        return buyerID;
     }
 
-    public int getTransactionIDDTO() {
-        return transactionIDDTO;
+    public int getTransactionID() {
+        return transactionID;
     }
 
-    public State getStateDTO() {
-        return stateDTO;
+    public State getState() {
+        return state;
     }
 
-    public void setStateDTO(State stateDTO) {
-        this.stateDTO = stateDTO;
+    public void setState(State state) {
+        this.state = state;
     }
 
-    public void setBuyerIDDTO(int buyerIDDTO) {
-        this.buyerIDDTO = buyerIDDTO;
+    public void setBuyerID(int buyerID) {
+        this.buyerID = buyerID;
     }
 
-    public void setTransactionIDDTO(int transactionIDDTO) {
-        this.transactionIDDTO = transactionIDDTO;
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
     }
 
-    public void setYearPlateDTO(int yearPlateDTO) {
-        this.yearPlateDTO = yearPlateDTO;
+    public void setYearPlate(int yearPlate) {
+        this.yearPlate = yearPlate;
     }
 
-    public void setVinDTO(String vinDTO) {
-        this.vinDTO = vinDTO;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
-    public void setVehicleModelDTO(ModelDTO modelDTO) {
-        this.modelDTO = modelDTO;
+    public void setVehicleModel(ModelDTO modelDTO) {
+        this.model = modelDTO;
     }
 
-    public void setFuelTypeDTO(FuelType fuelTypeDTO) {
-        this.fuelTypeDTO = fuelTypeDTO;
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
     }
 
-    public void setLicensePlateDTO(String licensePlateDTO) {
-        this.licensePlateDTO = licensePlateDTO;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
-    public void setMileageDTO(double mileageDTO) {
-        this.mileageDTO = mileageDTO;
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
     }
 
-    public void setPurchasePriceDTO(double purchasePriceDTO) {
-        this.purchasePriceDTO = purchasePriceDTO;
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
-    public void setSellingPriceDTO(double sellingPriceDTO) {
-        this.sellingPriceDTO = sellingPriceDTO;
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
-    public void setSellerDTO(SellerDTO sellerDTO) {
-        this.sellerDTO = sellerDTO;
+    public void setSeller(SellerDTO seller) {
+        this.seller = seller;
     }
 
-    public void setVehicleTypeDTO(VehicleType vehicleTypeDTO) {
-        this.vehicleTypeDTO = vehicleTypeDTO;
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
-    public void setBusinessStatusDTO(BusinessStatus businessStatusDTO) {
-        this.businessStatusDTO = businessStatusDTO;
+    public void setBusinessStatus(BusinessStatus businessStatus) {
+        this.businessStatus = businessStatus;
     }
 
-    public void setColourDTO(String colourDTO) {
-        this.colourDTO = colourDTO;
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
-    public void setDoorsDTO(int doorsDTO) {
-        this.doorsDTO = doorsDTO;
+    public void setDoors(int doors) {
+        this.doors = doors;
     }
 
-    public void setSeatsDTO(int seatsDTO) {
-        this.seatsDTO = seatsDTO;
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
-    public void setTractionDTO(Traction tractionDTO) {
-        this.tractionDTO = tractionDTO;
+    public void setTraction(Traction traction) {
+        this.traction = traction;
     }
 }

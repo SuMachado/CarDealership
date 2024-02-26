@@ -10,23 +10,23 @@ import org.springframework.hateoas.RepresentationModel;
 public class BrandDTO  extends RepresentationModel<BrandDTO> {
 
 
-    private int brandIdDTO;
-    private String nameDTO;
+    private int brandId;
+    private String name;
 
 
-    public int getBrandIdDTO() {
-        return brandIdDTO;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public String getNameDTO() {
-        return nameDTO;
+    public String getName() {
+        return name;
     }
 
-    public void setNameDTO(String nameDTO) {
-        this.nameDTO = nameDTO;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setBrandIdDTO(int brandIdDTO) {
-        this.brandIdDTO = brandIdDTO;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 }
